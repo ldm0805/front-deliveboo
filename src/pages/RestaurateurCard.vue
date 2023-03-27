@@ -24,7 +24,15 @@ export default {
             </div>
             <div class="card-title">
                 <h5>{{ restaurateur.name }}</h5>
+                <h5>{{ restaurateur.types.name }}</h5>
             </div>
+            <template v-if="restaurateur.types.length">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                    <span>Tag: </span>
+                    <span v-for="tag in restaurateur.types" class="badge bg-info text-white text-uppercase">{{ tag.name
+                    }}</span>
+                </div>
+            </template>
             <p class="card-text">{{ restaurateur.address }}</p>
             <router-link :to="{ name: 'Plates', params: { id: restaurateur.id } }"
                 class="btn btn-sm btn-success">Descrizione</router-link>

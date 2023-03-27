@@ -45,22 +45,24 @@ export default {
 </script>
 
 <template lang="">
-    <div class="d-flex justify-content-center">
-        <div v-if="loading">
-            <div class="loader d-flex justify-content-center ">
-            </div> 
-        </div>
-        <div v-else class="d-flex flex-wrap justify-content-center col-12">
-            <div class="card my-3 col-3 m-2" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
-                <RestaurateurCard  :restaurateur="restaurateur" />
+
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center">
+            <div v-if="loading">
+                <div class="loader d-flex justify-content-center ">
+                </div> 
+            </div>
+            <div v-else class="d-flex flex-wrap justify-content-center col-12">
+                <div class="card my-3 col-3 m-2" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
+                    <RestaurateurCard  :restaurateur="restaurateur" />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row py-5">
-        <div class="col-12 d-flex justify-content-center">
-            <nav>
-                <ul class="pagination">
-                    <li :class="currentPage === 1 ? 'disabled' : 'page-item'">
+        <div class="row py-5">
+            <div class="col-12 d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <li :class="currentPage === 1 ? 'disabled' : 'page-item'">
                         <button class="page-link" @click="getRestaurateurs(currentPage - 1)">Prev</button>
                     </li>
                     <li :class="currentPage === i ? 'disabled' : 'page-item'" v-for="i in lastPage">
@@ -73,6 +75,7 @@ export default {
             </nav>
         </div>
     </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
