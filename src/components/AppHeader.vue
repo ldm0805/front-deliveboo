@@ -29,7 +29,7 @@ export default {
     methods: {
         getRestaurateurs(restaurateur_page) {
             // this.loading = true,
-            axios.get(`http://127.0.0.1:8000/api/restaurateurs`).then((response) => {
+            axios.get(`${this.store.baseUrl}/api/restaurateurs`).then((response) => {
                 if (response.data.success) {
                     console.log(response.data.success)
                     this.restaurateurs = response.data.results.data;
@@ -52,7 +52,7 @@ export default {
 </script>
 <template lang="">
     <div>
-        
+        CIAOOOOP
     </div>
 </template>
 <style lang="scss" scoped></style>

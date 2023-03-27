@@ -2,7 +2,7 @@
 import AppHeader from './components/AppHeader.vue'
 export default {
   components: {
-    // AppHeader,
+    AppHeader
 
 
   }
@@ -10,7 +10,7 @@ export default {
 </script>
 <template lang="">
   <div>
-    <!-- <AppHeader></AppHeader> -->
+    <AppHeader></AppHeader>
     <router-view></router-view>
   </div>
 </template>
