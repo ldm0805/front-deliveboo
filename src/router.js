@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 // //2 importare le componenti che rappresentano le pagine
 import HomePage from './pages/HomePage.vue';
+import RestaurateurPage from './pages/RestaurateurPage.vue';
+import PlatesPage from './pages/PlatesPage.vue'
 // import PostList from './pages/PostList.vue';
 // import SinglePost from './pages/SinglePost.vue';
 // import NotFound from './pages/NotFound.vue';
@@ -20,6 +22,16 @@ const router = createRouter({
             path: '/',
             name: 'HomePage',
             component: HomePage
+        },
+        {
+            path: '/restaurateur',
+            name: 'RestaurateurPage',
+            component: RestaurateurPage
+        },
+        {
+            path: '/restaurateur/:id',
+            name: 'Plates',
+            component: PlatesPage
         },
     ]
 })
