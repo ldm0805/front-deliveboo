@@ -23,7 +23,7 @@ export default {
                 <h5>{{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">{{ restaurateur.address }}</p>
-            <router-link :to="{ name: 'Plates', params: { id: restaurateur.id } }"
+            <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
                 class="btn btn-sm btn-success">Descrizione</router-link>
         </div>
     </div>

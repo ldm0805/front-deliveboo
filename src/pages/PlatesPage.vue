@@ -13,7 +13,7 @@ export default {
     },
     mounted(){
         this.loading = true;
-        axios.get(`${this.store.baseUrl}/api/restaurateurs/${this.$route.params.id}`).then((response) => {
+        axios.get(`${this.store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
             if(response.data.success){
                 console.log(response.data.plates)
                 this.plates = response.data.plates

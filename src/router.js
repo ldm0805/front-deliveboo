@@ -29,7 +29,7 @@ const router = createRouter({
             component: RestaurateurPage
         },
         {
-            path: '/restaurateur/:id',
+            path: '/restaurateur/:slug',
             name: 'Plates',
             component: PlatesPage
         },
