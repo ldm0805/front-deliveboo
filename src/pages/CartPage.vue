@@ -5,7 +5,7 @@ export default {
     data(){
         return{
             store,
-            totalPrice : 0
+            totalPrice : 0,
         };
     },
     methods: {
@@ -14,12 +14,13 @@ export default {
 
             for (let i = 0; i < this.store.cart.length; i++) {
                 console.log(this.store.cart.length)
-                const itemTotal = parseFloat(this.store.cart[i].price) /*  * this.store.cart[i].quantity */;
+                const itemTotal = parseFloat(this.store.cart[i].price)* this.store.cart[i].quantity;
                 total += itemTotal;
                 }
                 this.totalPrice = total.toFixed(2)
                 console.log(total)
-        }
+        },
+
     },
     mounted() {
         this.addPrice(this.store.cart)
@@ -33,6 +34,7 @@ export default {
         <li v-for="plate in this.store.cart">
             {{ plate.name }}
             {{ plate.price }}
+            {{ plate.quantity }}
         </li>
         totale: {{ totalPrice }}
        </ul>
