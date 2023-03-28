@@ -51,7 +51,7 @@ export default {
             </div> 
         </div>
         <div v-else class="d-flex flex-wrap justify-content-center col-12">
-            <div class="card my-3 col-3 m-2" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
+            <div class="my-3 col-3 m-2" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
                 <RestaurateurCard  :restaurateur="restaurateur" />
             </div>
         </div>
