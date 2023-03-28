@@ -9,27 +9,16 @@ export default {
             store,
             loading : true,
             plates: [],
-            totalCart : [],
-            quantity : 0,
         }
     },
     methods: {
-        addToCart(plate){
-            this.store.cart.push(plate)
-            console.log(this.store.cart)
-        },
         addQuantity(plate){
                 if(this.store.cart.includes(plate)){
                     plate.quantity++
-                    console.log(this.store.cart)
-
                 }
                 else{
                     plate.quantity = 1
-                    this.totalCart.push(plate)
                     this.store.cart.push(plate)
-                    console.log(this.store.cart)
-                    console.log(this.quantity)
                 }
                 
                 
