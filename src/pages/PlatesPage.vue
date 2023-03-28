@@ -47,7 +47,7 @@ export default {
             {{ plate.name }}
        </div>
        <div class="price">
-            {{ plate.price }}
+            {{ plate.price }} a
        </div>
        <i class="fa-solid fa-cart-shopping" @click="addQuantity(plate)"></i>
     </div>
