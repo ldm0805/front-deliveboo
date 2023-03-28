@@ -4,36 +4,36 @@ import { store } from '../store';
 
 export default {
     name: "PlatesPage",
-    data(){
-        return{
+    data() {
+        return {
             store,
-            loading : true,
+            loading: true,
             plates: [],
         }
     },
     methods: {
-        addQuantity(plate){
-                if(this.store.cart.includes(plate)){
-                    plate.quantity++
-                }
-                else{
-                    plate.quantity = 1
-                    this.store.cart.push(plate)
-                }
-                
-                
+        addQuantity(plate) {
+            if (this.store.cart.includes(plate)) {
+                plate.quantity++
+            }
+            else {
+                plate.quantity = 1
+                this.store.cart.push(plate)
+            }
+
+
         }
     },
-    mounted(){
+    mounted() {
         this.loading = true;
         axios.get(`${this.store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
-            if(response.data.success){
+            if (response.data.success) {
                 this.plates = response.data.plates
                 this.loading = false
             }
-            else{
+            else {
 
-                this.$router.push({ name:'not-found' })
+                this.$router.push({ name: 'not-found' })
 
             }
         })
@@ -47,7 +47,7 @@ export default {
             {{ plate.name }}
        </div>
        <div class="price">
-            {{ plate.price }} a
+            {{ plate.price }}
        </div>
        <i class="fa-solid fa-cart-shopping" @click="addQuantity(plate)"></i>
     </div>
