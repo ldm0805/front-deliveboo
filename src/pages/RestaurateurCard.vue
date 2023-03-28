@@ -17,7 +17,7 @@ export default {
 
 <template>
     <div class="card">
-        <img class="card-img-top w-100" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
+        <img class="card-img-top" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
         <div class="card-body">
             <div class="card-title">
                 <h5>{{ restaurateur.name }}</h5>
@@ -31,8 +31,4 @@ export default {
 
 
 <style lang="scss" scoped>
-img {
-    width: 200px;
-    height: 300px;
-}
 </style>
