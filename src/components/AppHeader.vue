@@ -50,6 +50,11 @@ export default {
                 {{ item.label }}
             </router-link>
         </li>
+        <li>
+            <router-link :to="{ name: 'CartPage' }" class="nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </router-link>
+        </li>
       </ul>
     </div>
   </div>

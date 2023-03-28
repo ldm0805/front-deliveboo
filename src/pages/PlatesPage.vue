@@ -11,11 +11,16 @@ export default {
             plates: [],
         }
     },
+    methods: {
+        addToCart(plate){
+            this.store.cart.push(plate)
+            console.log(this.store.cart)
+        }
+    },
     mounted(){
         this.loading = true;
         axios.get(`${this.store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
             if(response.data.success){
-                console.log(response.data.plates)
                 this.plates = response.data.plates
                 this.loading = false
             }
@@ -37,6 +42,7 @@ export default {
        <div class="price">
             {{ plate.price }}
        </div>
+       <i class="fa-solid fa-cart-shopping" @click="addToCart(plate)"></i>
     </div>
 </template>
 
