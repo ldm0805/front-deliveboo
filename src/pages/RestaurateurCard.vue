@@ -16,12 +16,9 @@ export default {
 
 
 <template>
-    <div>
+    <div class="card">
+        <img class="card-img-top w-100" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
         <div class="card-body">
-            <div class="card-img-top">
-                <img :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
-                    alt="">
-            </div>
             <div class="card-title">
                 <h5>{{ restaurateur.name }}</h5>
             </div>
