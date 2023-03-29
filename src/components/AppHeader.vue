@@ -1,8 +1,12 @@
 <script>
 import axios from 'axios';
+import AppSearch from './AppSearch.vue'
 import { store } from '../store';
 export default {
     name: "AppHeader",
+    components: {
+        AppSearch
+    },
     data() {
         return {
             restaurateur: [],
@@ -26,6 +30,27 @@ export default {
         }
 
     },
+    //Prova search
+    methods: {
+        searchAll() {
+            const slugify = store.inputText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+            console.log(slugify)
+            this.loading = true,
+                axios.get(`${this.store.baseUrl}/api/restaurateurs?slug=${slugify}`).then((response) => {
+                    if (response.data.success) {
+                        this.restaurateurs = response.data.results.data;
+                        this.loading = false;
+                    }
+                    else {
+
+                    }
+
+                });
+        },
+    },
+    computed() {
+
+    }
 }
 </script>
 
@@ -39,6 +64,10 @@ export default {
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+    </div>
+    <div class="right-search d-flex">
+        <AppSearch @search="searchAll"/>
+        
     </div>
     <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
       <ul class="navbar-nav">
