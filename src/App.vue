@@ -7,10 +7,8 @@ export default {
 }
 </script>
 <template lang="">
-  <div>
-    <AppHeader></AppHeader>
-    <router-view></router-view>
-  </div>
+  <AppHeader></AppHeader>
+  <router-view></router-view>
 </template>
 <style lang="scss">
 @use './styles/app.scss' as *;

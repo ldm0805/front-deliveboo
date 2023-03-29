@@ -52,28 +52,28 @@ export default {
                     <div class="loader"></div> 
                 </div>
                 <div v-else class="row">
-                    <div :class="restaurateur.slug.includes(this.store.searched) ? 'col-4' : ' d-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
+                    <div :class="restaurateur.slug.includes(this.store.searched) ? 'col-4 my-3' : ' d-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
                         <RestaurateurCard :restaurateur="restaurateur" />                            
                     </div>                     
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row py-5">
-        <div class="col-12 d-flex justify-content-center">
-            <nav>
-                <ul class="pagination">
-                    <li :class="currentPage === 1 ? 'disabled' : 'page-item'">
-                        <button class="page-link" @click="getRestaurateurs(currentPage - 1)">Prev</button>
-                    </li>
-                    <li :class="currentPage === i ? 'disabled' : 'page-item'" v-for="i in lastPage">
-                        <button class="page-link" @click="getRestaurateurs(i)">{{i}}</button>
-                    </li>
-                    <li :class="currentPage === lastPage ? 'disabled' : 'page-item'">
-                        <button class="page-link" @click="getRestaurateurs(currentPage + 1)">Next</button>
-                    </li>
-                </ul>
-            </nav>
+        <div class="row py-5">
+            <div class="col-12 d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <li :class="currentPage === 1 ? 'disabled' : 'page-item'">
+                            <button class="page-link" @click="getRestaurateurs(currentPage - 1)">Prev</button>
+                        </li>
+                        <li :class="currentPage === i ? 'disabled' : 'page-item'" v-for="i in lastPage">
+                            <button class="page-link" @click="getRestaurateurs(i)">{{i}}</button>
+                        </li>
+                        <li :class="currentPage === lastPage ? 'disabled' : 'page-item'">
+                            <button class="page-link" @click="getRestaurateurs(currentPage + 1)">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </template>
