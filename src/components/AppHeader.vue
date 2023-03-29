@@ -34,18 +34,10 @@ export default {
     methods: {
         searchAll() {
             const slugify = store.inputText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-            console.log(slugify)
-            this.loading = true,
-                axios.get(`${this.store.baseUrl}/api/restaurateurs?slug=${slugify}`).then((response) => {
-                    if (response.data.success) {
-                        this.restaurateurs = response.data.results.data;
-                        this.loading = false;
-                    }
-                    else {
+            
+            this.store.searched = slugify
+            console.log(this.store.searched)
 
-                    }
-
-                });
         },
     },
     computed() {
