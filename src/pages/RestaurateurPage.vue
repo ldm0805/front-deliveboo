@@ -45,14 +45,17 @@ export default {
 </script>
 
 <template lang="">
-    <div class="d-flex justify-content-center">
-        <div v-if="loading">
-            <div class="loader d-flex justify-content-center ">
-            </div> 
-        </div>
-        <div v-else class="d-flex flex-wrap justify-content-center col-12">
-            <div class="my-3 col-3 m-2" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
-                <RestaurateurCard  :restaurateur="restaurateur" />
+    <div class="container">
+        <div class="row">
+            <div class="col-12">                
+                <div class="d-flex justify-content-center" v-if="loading">
+                    <div class="loader"></div> 
+                </div>
+                <div v-else class="row">
+                    <div :class="restaurateur.slug.includes(this.store.searched) ? 'col-4' : ' d-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
+                        <RestaurateurCard :restaurateur="restaurateur" />                            
+                    </div>                     
+                </div>
             </div>
         </div>
     </div>
