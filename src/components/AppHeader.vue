@@ -78,7 +78,7 @@ export default {
                 
             </div>
             <select name="" id="" v-model="type" @change="filter">
-                <option :value="type.name" v-for="type in types">
+                <option :value="type.name" v-for="(type) in types">
                     {{ type.name }}
                 </option>
             </select>
