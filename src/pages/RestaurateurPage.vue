@@ -51,8 +51,23 @@ export default {
                 <div class="d-flex justify-content-center" v-if="loading">
                     <div class="loader"></div> 
                 </div>
+                <div v-else-if="store.searched != '' && store.selectedType != ''" class="row-grid">
+                    <div v-show="restaurateur.slug.includes(store.searched)" :class="restaurateur.types[0].name == this.store.selectedType ? 'my-3' : 'd-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id">
+                        <RestaurateurCard :restaurateur="restaurateur"/>                            
+                    </div>                     
+                </div>
+                <div v-else-if="store.searched != ''" class="row-grid">
+                    <div v-show="restaurateur.slug.includes(store.searched)" v-for="restaurateur in restaurateurs" :key="restaurateur.id">
+                        <RestaurateurCard :restaurateur="restaurateur"/>                            
+                    </div>                     
+                </div>
+                <div v-else-if="store.selectedType != ''" class="row-grid">
+                    <div v-show="restaurateur.slug.includes(store.searched)" :class="restaurateur.types[0].name == this.store.selectedType ? 'my-3' : 'd-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id">
+                        <RestaurateurCard :restaurateur="restaurateur"/>                            
+                    </div>                     
+                </div>
                 <div v-else class="row-grid">
-                    <div v-for="restaurateur in restaurateurs" :key="restaurateur.id" :class="restaurateur.slug.includes(store.searched) ? 'my-3' : 'd-none'">
+                    <div v-for="restaurateur in restaurateurs" :key="restaurateur.id">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
