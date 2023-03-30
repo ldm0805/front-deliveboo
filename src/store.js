@@ -4,5 +4,6 @@ export const store = reactive({
     cart: [],
     inputText: '',
     searched: '',
+    selectedType: '',
 
 })

@@ -10,8 +10,10 @@ export default {
     data() {
         return {
             restaurateur: [],
+            type: '',
             store,
             currentPage: 1,
+            types: [],
             menuItems: [
                 {
                     label: 'Homepage',
@@ -35,8 +37,25 @@ export default {
             const slugify = store.inputText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
             this.store.searched = slugify
             console.log(this.store.searched)
-
         },
+        getTypes(type_page){
+            axios.get(`${this.store.baseUrl}/api/types`, { params: { page: type_page } }).then((response) => {
+                if (response.data.success) {
+                        this.types = response.data.results;
+                    }
+                else {
+
+                }
+
+                });
+        },
+        filter(){
+            this.store.selectedType = this.type
+            console.log(this.store.selectedType)
+        }
+    },
+    mounted(){
+        this.getTypes()
     },
     computed() {
 
@@ -58,6 +77,11 @@ export default {
                 <AppSearch @search="searchAll"/>
                 
             </div>
+            <select name="" id="" v-model="type" @change="filter">
+                <option :value="type.name" v-for="type in types">
+                    {{ type.name }}
+                </option>
+            </select>
             <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item" v-for="(item, index) in menuItems" :key="index">

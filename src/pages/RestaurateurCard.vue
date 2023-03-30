@@ -13,10 +13,11 @@ export default {
     },
 }
 </script>
-
-
+/* restaurateur.slug.includes(this.store.searched)&&
+ */
 <template>
-    <div class="card" v-if="restaurateur.slug.includes(this.store.searched)">
+    <div v-for="type, index in restaurateur.types" :key="index">{{ type }}</div>
+    <div class="card" v-if="restaurateur.types[0].name == this.store.selectedType">
         <img class="card-img-top" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
         <div class="card-body">
             <div class="card-title">
