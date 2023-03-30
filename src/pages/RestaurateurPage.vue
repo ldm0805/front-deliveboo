@@ -47,13 +47,13 @@ export default {
 <template lang="">
     <div class="container">
         <div class="row">
-            <div class="col-12">                
+            <div class="parent">                
                 <div class="d-flex justify-content-center" v-if="loading">
                     <div class="loader"></div> 
                 </div>
-                <div v-else class="row">
-                    <div :class="restaurateur.slug.includes(this.store.searched) ? 'col-4 my-3' : ' d-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
-                        <RestaurateurCard :restaurateur="restaurateur" />                            
+                <div v-else class="row-grid ">
+                    <div :class="restaurateur.slug.includes(this.store.searched) ? 'my-3' : ' d-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
+                        <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
             </div>
@@ -97,6 +97,24 @@ export default {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+.row-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media(max-width: 991px) {
+    .row-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 767px) {
+    .row-grid {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 </style>
