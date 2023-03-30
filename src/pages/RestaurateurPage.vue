@@ -51,8 +51,8 @@ export default {
                 <div class="d-flex justify-content-center" v-if="loading">
                     <div class="loader"></div> 
                 </div>
-                <div v-else class="row-grid ">
-                    <div :class="restaurateur.slug.includes(this.store.searched) ? 'my-3' : ' d-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id" >
+                <div v-else class="row-grid">
+                    <div v-for="restaurateur in restaurateurs" :key="restaurateur.id" :class="restaurateur.slug.includes(store.searched) ? 'my-3' : 'd-none'">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
