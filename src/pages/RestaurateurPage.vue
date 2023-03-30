@@ -57,7 +57,7 @@ export default {
                     </div>                     
                 </div>
                 <div v-else-if="store.searched != ''" class="row-grid">
-                    <div v-show="restaurateur.slug.includes(store.searched)" v-for="restaurateur in restaurateurs" :key="restaurateur.id">
+                    <div v-show="restaurateur.slug.includes(store.searched)" class="my-3" v-for="restaurateur in restaurateurs" :key="restaurateur.id">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
@@ -67,7 +67,7 @@ export default {
                     </div>                     
                 </div>
                 <div v-else class="row-grid">
-                    <div v-for="restaurateur in restaurateurs" :key="restaurateur.id">
+                    <div v-for="restaurateur in restaurateurs"  class="my-3" :key="restaurateur.id">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
