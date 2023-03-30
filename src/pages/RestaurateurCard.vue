@@ -15,8 +15,9 @@ export default {
 </script>
 
 <template>
-
-    <div class="card" v-if="restaurateur.slug.includes(this.store.searched)&&restaurateur.types[0].name == this.store.selectedType">
+        <div v-if="restaurateur.types[1]">
+        
+    <div class="card" v-if="restaurateur.slug.includes(this.store.searched)&&restaurateur.types[1].name == this.store.selectedType">
         <img class="card-img-top" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
 
         <div class="card-body">
@@ -28,7 +29,10 @@ export default {
                 class="button">Descrizione</router-link>
         </div>
     </div>
-    <div class="card" v-else-if="this.store.searched == ''&&restaurateur.types[0].name == this.store.selectedType">
+    <div class="card" v-else-if="this.store.searched == ''&&this.store.selectedType == restaurateur.types[1].name">
+        <div>
+            {{ restaurateur.types[1].name }}
+        </div>
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
             alt="">
@@ -41,7 +45,7 @@ export default {
                 class="button">Descrizione</router-link>
         </div>
     </div>
-    <div class="card" v-else-if="restaurateur.slug.includes(this.store.searched)&&this.store.selectedType == ''">
+    <div class="card" v-else-if="this.store.searched != ''&&this.store.selectedType == ''">
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
             alt="">
@@ -50,11 +54,15 @@ export default {
                 <h5>{{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">{{ restaurateur.address }}</p>
+
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
                 class="button">Descrizione</router-link>
         </div>
     </div>
     <div class="card" v-else-if="this.store.searched == ''&&this.store.selectedType == ''">
+        <div>
+            {{ restaurateur.types[1].name }}
+        </div>
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
             alt="">
@@ -63,10 +71,15 @@ export default {
                 <h5>{{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">{{ restaurateur.address }}</p>
+            <p>AAAAAAAAAAAAA</p>
+
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
                 class="button">Descrizione</router-link>
         </div>
     </div>
+</div>
+
+
 </template>
 
 
