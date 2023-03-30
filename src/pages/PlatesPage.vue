@@ -13,31 +13,32 @@ export default {
     },
     methods: {
         addQuantity(plate) {
-            const index = this.store.cart.findIndex(plate => plate.name === plate.name);
-            if (index === -1) {
+            if (this.store.cart.includes(plate)) {
+                plate.quantity++;
+                console.log(this.store.cart)
+            } else {
+                plate.quantity++;
+                console.log(this.store.cart)
                 plate.quantity = 1;
                 this.store.cart.push(plate);
-            } else {
-                this.store.cart[index].quantity++;
+                console.log(this.store.cart)
+
             }
         },
 
         decreaseQuantity(plate) {
-            const index = this.store.cart.findIndex(plate => plate.name === plate.name);
-            if (index !== -1) {
-                const newQuantity = this.store.cart[index].quantity - 1;
-                if (newQuantity > 0) {
-                    this.store.cart[index].quantity = newQuantity;
+            if (this.store.cart.includes(plate)) {
+                    plate.quantity--
+                    console.log(this.store.cart)
+
                 } else {
-                    this.store.cart.splice(index, 1);
+                    plate.quantity == 0
+                    console.log(this.store.cart)
+
                 }
             }
         },
-        addTotal() {
-            this.addPrice(this.store.cart)
-        }
-    },
-    mounted() {
+    mounted(){
 
         this.loading = true;
         axios.get(`${this.store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
@@ -52,15 +53,7 @@ export default {
             }
         })
     },
-    computed: {
-        totalQuantity() {
-            let total = 0;
-            for (const plate of this.store.cart) {
-                total += plate.quantity;
-            }
-            return total;
-        },
-    },
+
 }
 </script>
 
@@ -70,7 +63,7 @@ export default {
     <div class="price">{{ plate.price }}</div>
     <div class="quantity">
         <button class="btn" @click="decreaseQuantity(plate)"><i class="fa-solid fa-minus"></i></button>
-        <span>{{ totalQuantity}}</span>
+        <span>{{ plate.quantity }}</span>
 
         <button class="btn" @click="addQuantity(plate)"><i class="fa-solid fa-plus"></i></button>
     </div>
