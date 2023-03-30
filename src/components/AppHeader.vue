@@ -12,7 +12,6 @@ export default {
             restaurateur: [],
             store,
             currentPage: 1,
-
             menuItems: [
                 {
                     label: 'Homepage',
@@ -34,7 +33,6 @@ export default {
     methods: {
         searchAll() {
             const slugify = store.inputText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-            
             this.store.searched = slugify
             console.log(this.store.searched)
 

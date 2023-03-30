@@ -19,7 +19,7 @@ export default {
     <div class="container">
         <div class="row">
             <div class="input-group">
-                <input type="text" id="search" class="form-control" placeholder="Ricerca il film" aria-label="Ricerca il film" v-model="store.inputText" @keyup.enter="$emit('search')">
+                <input type="text" id="search" class="form-control" placeholder="Ricerca il ristorante" aria-label="Ricerca il film" v-model="store.inputText" @keyup.enter="$emit('search')">
                 <button class="btn btn-danger" type="button" @click="searchMedia" >Cerca</button>
             </div>
         </div>

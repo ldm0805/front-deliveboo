@@ -19,6 +19,11 @@ export default {
             this.totalPrice = total.toFixed(2)
             console.log(total)
         },
+        myCheck() {
+            window.location.href = "http://127.0.0.1:8000/payment";
+            // this.$router.push('api/mycheck/pages');
+            // this.$store.dispatch('fetchmycheck');
+        }
 
     },
     mounted() {
@@ -37,6 +42,9 @@ export default {
         </li>
         totale: {{ totalPrice }} &euro;
        </ul>
+    </div>
+    <div>
+        <button @click = "myCheck">Carrello</button>
     </div>
 </template>
 
