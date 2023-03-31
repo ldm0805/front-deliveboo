@@ -1,11 +1,13 @@
 <script>
+import Multiselect from '@vueform/multiselect'
 import axios from 'axios';
 import AppSearch from './AppSearch.vue'
 import { store } from '../store';
 export default {
     name: "AppHeader",
     components: {
-        AppSearch
+        AppSearch,
+        Multiselect
     },
     data() {
         return {
@@ -82,17 +84,19 @@ export default {
                     </button> -->
                 </div>
 
-                <!-- Search -->
-                <div class="right-search d-flex">
-                    <AppSearch @search="searchAll"/>
-                </div>
-
                 <!-- Select -->
-                <select name="" id="" v-model="type" @change="filter">
-                    <option :value="type.name" v-for="(type) in types">
-                        {{ type.name }}
-                    </option>
-                </select>
+                <Multiselect class="mx-3"
+                v-model="value"
+                mode="tags"
+                :close-on-select="false"
+                :searchable="true"
+                :create-option="true"
+                :options="[
+                    { value: 'batman', label: 'Batman' },
+                    { value: 'robin', label: 'Robin' },
+                    { value: 'joker', label: 'Joker' },
+                ]"
+                />
                 
                 <div class="w-100" id="navbarNav">
                     <ul class="d-flex list-unstyled gap-2 m-0 justify-content-end">
@@ -115,24 +119,24 @@ export default {
         </div>
     </header>
 </template>
-<style lang="scss" scoped>
+<style lang="scss" src="@vueform/multiselect/themes/default.css" >
   @use '../styles/partials/variables' as *;
 
     header {
         height: 80px;
-    }
-
-.container-fluid {
-
-    nav {
-        background-color: $primary_color !important;
-    }
-
-    li {
-
-        .nav-link {
-            color: white;
+        .container-fluid {
+        
+            nav {
+                background-color: $primary_color !important;
+            }
+        
+            li {
+        
+                .nav-link {
+                    color: white;
+                }
+            }
         }
     }
-}
+
 </style>
