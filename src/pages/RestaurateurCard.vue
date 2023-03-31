@@ -59,7 +59,7 @@ export default {
                 piatti</router-link>
         </div>
     </div>
-    <div class="card" v-else-if="restaurateur.slug.includes(this.store.searched) && this.store.selectedType == ''">
+    <div class="card" v-else-if="restaurateur.slug.includes(this.store.searched) && this.store.selectedType == null">
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
             alt="">
@@ -80,7 +80,7 @@ export default {
                 piatti</router-link>
         </div>
     </div>
-    <div class="card" v-else-if="this.store.searched == '' && this.store.selectedType == ''">
+    <div class="card" v-else-if="this.store.searched == '' && this.store.selectedType == null">
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
             alt="">

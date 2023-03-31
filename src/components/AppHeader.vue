@@ -29,7 +29,8 @@ export default {
                     label: 'Contatti',
                     // routeName: 'contacts'
                 },
-            ]
+            ],
+            options: []
         }
 
     },
@@ -44,6 +45,9 @@ export default {
             axios.get(`${this.store.baseUrl}/api/types`, { params: { page: type_page } }).then((response) => {
                 if (response.data.success) {
                     this.types = response.data.results;
+                    this.types.forEach(element => {
+                        this.options.push(element.name)
+                    });
                 }
                 else {
 
@@ -86,16 +90,12 @@ export default {
 
                 <!-- Select -->
                 <Multiselect class="mx-3"
-                v-model="value"
+                v-model="store.selectedType"
                 mode="tags"
                 :close-on-select="false"
                 :searchable="true"
                 :create-option="true"
-                :options="[
-                    { value: 'batman', label: 'Batman' },
-                    { value: 'robin', label: 'Robin' },
-                    { value: 'joker', label: 'Joker' },
-                ]"
+                :options="options"
                 />
                 
                 <div class="w-100" id="navbarNav">
