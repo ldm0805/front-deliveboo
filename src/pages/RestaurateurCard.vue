@@ -29,7 +29,7 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="tag in restaurateur.types" class="badge bg-info text-white text-uppercase">{{ tag.name
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
                     }}</span>
                 </div>
             </template>
@@ -49,7 +49,7 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="tag in restaurateur.types" class="badge bg-info text-white text-uppercase">{{ tag.name
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
                     }}</span>
                 </div>
             </template>
@@ -69,7 +69,7 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="tag in restaurateur.types" class="badge bg-info text-white text-uppercase">{{ tag.name
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
                     }}</span>
                 </div>
             </template>
@@ -89,7 +89,7 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="tag in restaurateur.types" class="badge bg-info text-white text-uppercase">{{ tag.name
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
                     }}</span>
                 </div>
             </template>
