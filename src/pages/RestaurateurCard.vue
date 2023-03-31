@@ -13,7 +13,7 @@ export default {
     },
 }
 </script>
-
+<!-- Ciao sono un commento -->
 <template>
     <div class="card"
         v-if="restaurateur.slug.includes(this.store.searched) && restaurateur.types[0].name == this.store.selectedType">
@@ -29,8 +29,9 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
-                    }}</span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
+                        :key="index">{{ tag.name
+                        }}</span>
                 </div>
             </template>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
@@ -49,8 +50,9 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
-                    }}</span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
+                        :key="index">{{ tag.name
+                        }}</span>
                 </div>
             </template>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
@@ -69,8 +71,9 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
-                    }}</span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
+                        :key="index">{{ tag.name
+                        }}</span>
                 </div>
             </template>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
@@ -89,8 +92,9 @@ export default {
             <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name
-                    }}</span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
+                        :key="index">{{ tag.name
+                        }}</span>
                 </div>
             </template>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
@@ -120,5 +124,4 @@ export default {
     .card-img-top {
         height: 200px;
     }
-}
-</style>
+}</style>
