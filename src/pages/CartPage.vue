@@ -36,18 +36,28 @@ export default {
     <div>
        <ul>
         <li v-for="plate in this.store.cart">
-            {{ plate.name }}
-            {{ plate.price }}
-            {{ plate.quantity }}
+            <div class="card" style="width:18rem;">
+                <img class="card-img-top"
+            :src="plate.image != null ? `${this.store.baseUrl}/storage/${plate.image}` : 'https://picsum.photos/200/300'"
+            alt="">
+              <div class="card-body">
+                <h5 class="card-title"> {{ plate.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted "> {{ plate.price }}</h6>
+                <p class="card-text"> {{ plate.description }}</p>
+                <p class="card-text"><strong>Totale prodotto:</strong>  {{ plate.quantity }} x {{ plate.price }}  &euro;</p>
+              </div>
+            </div>
         </li>
-        totale: {{ totalPrice }} &euro;
+        Totale ordine: {{ totalPrice }} &euro;
        </ul>
     </div>
-    <div>
-        <button @click = "myCheck">Carrello</button>
+    <div class="mb-4">
+        <button class="btn btn-sm btn-success" @click = "myCheck">Procedi con il tuo ordine</button>
     </div>
 </template>
 
-<style lang="">
-    
+<style lang="scss" scoped>
+li {
+    list-style-type: none;
+}
 </style>
