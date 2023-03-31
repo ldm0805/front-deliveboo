@@ -38,23 +38,23 @@ export default {
             this.store.searched = slugify
             console.log(this.store.searched)
         },
-        getTypes(type_page){
+        getTypes(type_page) {
             axios.get(`${this.store.baseUrl}/api/types`, { params: { page: type_page } }).then((response) => {
                 if (response.data.success) {
-                        this.types = response.data.results;
-                    }
+                    this.types = response.data.results;
+                }
                 else {
 
                 }
 
-                });
+            });
         },
-        filter(){
+        filter() {
             this.store.selectedType = this.type
             console.log(this.store.selectedType)
         }
     },
-    mounted(){
+    mounted() {
         this.getTypes()
     },
     computed() {

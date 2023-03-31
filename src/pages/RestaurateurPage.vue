@@ -119,6 +119,10 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+
+    .card {
+        height: 100%;
+    }
 }
 
 @media(max-width: 991px) {
