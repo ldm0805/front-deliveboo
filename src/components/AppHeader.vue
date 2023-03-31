@@ -64,29 +64,33 @@ export default {
 </script>
 
 <template lang="">
-    <header class="my-bg-primary">
-        <div class="container px-0">
-            <nav class="navbar navbar-expand-lg" data-bs-theme="light">
-                <div class="container-fluid">
-                    <div>
-                        <a class="navbar-brand" href="#">Deliveboo</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    <div class="right-search d-flex">
-                        <AppSearch @search="searchAll"/>
-                        
-                    </div>
-                    <select name="" id="" v-model="type" @change="filter">
-                        <option :value="type.name" v-for="(type) in types">
-                            {{ type.name }}
-                        </option>
-                    </select>
-                    <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
-                    <ul class="navbar-nav">
+    <header class="my-bg-primary my-text-light">
+        <div class="container px-0 h-100">
+            <nav class="d-flex align-items-center m-0 align-items-center h-100" data-bs-theme="light">
+                <div>
+                    <a class="navbar-brand fw-bold" href="#">Deliveboo</a>
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                </div>
+
+                <!-- Search -->
+                <div class="right-search d-flex">
+                    <AppSearch @search="searchAll"/>
+                </div>
+
+                <!-- Select -->
+                <select name="" id="" v-model="type" @change="filter">
+                    <option :value="type.name" v-for="(type) in types">
+                        {{ type.name }}
+                    </option>
+                </select>
+
+                
+                <div class="w-100" id="navbarNav">
+                    <ul class="d-flex list-unstyled gap-2 m-0 justify-content-end">
                         <li class="nav-item" v-for="(item, index) in menuItems" :key="index">
-                            <!--<a :href="item.routeName" class="nav-link">
+                            <!-- <a :href="item.routeName" class="nav-link">
                                 {{ item.label }}
                             </a> -->
                             <router-link :to="{ name: item.routeName }" class="nav-link">
@@ -99,10 +103,13 @@ export default {
                             </router-link>
                         </li>
                     </ul>
-                    </div>
                 </div>
-            </nav>
+        </nav>
         </div>
     </header>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    header {
+        height: 80px;
+    }
+</style>
