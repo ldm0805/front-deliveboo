@@ -13,7 +13,7 @@ export default {
     },
 }
 </script>
-<!-- Ciao sono un commento -->
+<!-- Ciao sono un -->
 <template>
     <div class="card"
         v-if="restaurateur.slug.includes(this.store.searched) && restaurateur.types[0].name == this.store.selectedType">

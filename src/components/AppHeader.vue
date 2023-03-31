@@ -26,6 +26,10 @@ export default {
                     routeName: 'RestaurateurPage'
                 },
                 {
+                    label: 'Braintree',
+                    routeName: 'BraintreePage'
+                },
+                {
                     label: 'Contatti',
                     // routeName: 'contacts'
                 },
@@ -119,6 +123,7 @@ export default {
         </div>
     </header>
 </template>
+
 <style lang="scss" src="@vueform/multiselect/themes/default.css" >
   @use '../styles/partials/variables' as *;
 
@@ -136,6 +141,7 @@ export default {
                     color: white;
                 }
             }
+
         }
     }
 

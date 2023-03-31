@@ -6,11 +6,8 @@ import HomePage from './pages/HomePage.vue';
 import RestaurateurPage from './pages/RestaurateurPage.vue';
 import PlatesPage from './pages/PlatesPage.vue';
 import CartPage from './pages/CartPage.vue'
-// import PostList from './pages/PostList.vue';
-// import SinglePost from './pages/SinglePost.vue';
-// import NotFound from './pages/NotFound.vue';
-// import Contacts from './pages/Contacts.vue';
-// import ThankYou from './pages/ThankYou.vue';
+import BraintreePage from './pages/BraintreePage.vue'
+
 
 
 
@@ -38,6 +35,11 @@ const router = createRouter({
             path: '/cart',
             name: 'CartPage',
             component: CartPage
+        },
+        {
+            path: '/braintree',
+            name: 'BraintreePage',
+            component: BraintreePage
         },
     ]
 })
