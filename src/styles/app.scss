@@ -10,6 +10,39 @@
     box-sizing: border-box;
 }
 
+// Utilities
+
+.my-bg-primary {
+	background-color: $primary_color;
+}
+
+.my-text-primary {
+	color: $primary_color;
+}
+
+.my-bg-light {
+	background-color: $light_color;
+}
+
+.my-text-light {
+	color: $light_color;
+}
+
+.my-bg-dark {
+	background-color: $dark_color;
+}
+
+.my-text-dark {
+	color: $dark_color;
+}
+.my-bg-grey {
+	background-color: $grey_color;
+}
+
+.my-text-grey {
+	color: $grey_color;
+}
+
 .navbar-nav {
     margin: 2em 0em !important;
 }
