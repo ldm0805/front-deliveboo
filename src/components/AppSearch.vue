@@ -20,7 +20,7 @@ export default {
         <div class="row">
             <div class="input-group">
                 <input type="text" id="search" class="form-control border-light bg-transparent text-light" placeholder="Ricerca il ristorante" aria-label="Ricerca il film" v-model="store.inputText" @keyup.enter="$emit('search')">
-                <button class="btn btn-outline-light" type="button" @click="searchMedia" >Cerca</button>
+                <button class="btn btn-outline-light" type="button" @click="searchMedia" ><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </div>
