@@ -12,10 +12,7 @@ export default {
 
     data() {
         return {
-            restaurateurs: [],
             store,
-            currentPage: 1,
-            lastPage: null,
             loading: true,
         }
 
@@ -25,9 +22,9 @@ export default {
             this.loading = true,
                 axios.get(`${this.store.baseUrl}/api/restaurateurs`, { params: { page: restaurateur_page } }).then((response) => {
                     if (response.data.success) {
-                        this.restaurateurs = response.data.results.data;
-                        this.currentPage = response.data.results.current_page;
-                        this.lastPage = response.data.results.last_page;
+                        this.store.restaurateurs = response.data.results.data;
+                        this.store.currentPage = response.data.results.current_page;
+                        this.store.lastPage = response.data.results.last_page;
                         this.loading = false;
                     }
                     else {
@@ -45,19 +42,14 @@ export default {
 </script>
 
 <template lang="">
-    <div class="container">
+    <div class="container" v-if="this.store.selectedType == null">
         <div class="row">
             <div class="parent">                
                 <div class="d-flex justify-content-center" v-if="loading">
                     <div class="loader"></div> 
                 </div>
-                <div v-if="store.selectedType != null" class="row-grid">
-                    <div :class="restaurateur.types[0].name == this.store.selectedType ? 'my-3' : 'd-none'" v-for="restaurateur in restaurateurs" :key="restaurateur.id">
-                        <RestaurateurCard :restaurateur="restaurateur"/>                            
-                    </div>                     
-                </div>
                 <div v-else class="row-grid">
-                    <div v-for="restaurateur in restaurateurs"  class="my-3" :key="restaurateur.id">
+                    <div v-for="restaurateur in this.store.restaurateurs"  class="my-3" :key="restaurateur.id">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
@@ -67,14 +59,50 @@ export default {
             <div class="col-12 d-flex justify-content-center">
                 <nav>
                     <ul class="pagination">
-                        <li :class="currentPage === 1 ? 'disabled' : 'page-item'">
-                            <button class="page-link" @click="getRestaurateurs(currentPage - 1)">Prev</button>
+                        <li :class="this.store.currentPage === 1 ? 'disabled' : 'page-item'">
+                            <button class="page-link" @click="getRestaurateurs(this.store.currentPage - 1)">Prev</button>
                         </li>
-                        <li :class="currentPage === i ? 'disabled' : 'page-item'" v-for="i in lastPage">
+                        <li :class="this.store.currentPage === i ? 'disabled' : 'page-item'" v-for="i in this.store.lastPage">
                             <button class="page-link" @click="getRestaurateurs(i)">{{i}}</button>
                         </li>
-                        <li :class="currentPage === lastPage ? 'disabled' : 'page-item'">
-                            <button class="page-link" @click="getRestaurateurs(currentPage + 1)">Next</button>
+                        <li :class="this.store.currentPage === this.store.lastPage ? 'disabled' : 'page-item'">
+                            <button class="page-link" @click="getRestaurateurs(this.store.currentPage + 1)">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container" v-else>
+        <div class="row">
+            <div class="parent">                
+                <div class="d-flex justify-content-center" v-if="loading">
+                    <div class="loader"></div> 
+                </div>
+                <div v-else class="row-grid">
+                    <div v-for="restaurateur in this.store.restaurateurs"  class="my-3" :key="restaurateur.id">
+                        <RestaurateurCard :restaurateur="restaurateur"/>                            
+                    </div>
+                    <div v-if="this.store.selectedType[1]">
+                    <div v-for="restaurateur in this.store.restaurateurstwo"  class="my-3" :key="restaurateur.id">
+                        <RestaurateurCard :restaurateur="restaurateur"/>                            
+                    </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row py-5">
+            <div class="col-12 d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <li :class="this.store.currentPage === 1 ? 'disabled' : 'page-item'">
+                            <button class="page-link" @click="getRestaurateurs(this.store.currentPage - 1)">Prev</button>
+                        </li>
+                        <li :class="this.store.currentPage === i ? 'disabled' : 'page-item'" v-for="i in this.store.lastPage">
+                            <button class="page-link" @click="getRestaurateurs(i)">{{i}}</button>
+                        </li>
+                        <li :class="this.store.currentPage === this.store.lastPage ? 'disabled' : 'page-item'">
+                            <button class="page-link" @click="getRestaurateurs(this.store.currentPage + 1)">Next</button>
                         </li>
                     </ul>
                 </nav>

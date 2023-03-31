@@ -17,7 +17,6 @@ export default {
                 total += itemTotal;
             }
             this.totalPrice = total.toFixed(2)
-            console.log(total)
         },
         myCheck() {
             window.location.href = "http://127.0.0.1:8000/payment";

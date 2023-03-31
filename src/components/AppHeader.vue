@@ -43,14 +43,13 @@ export default {
         searchAll() {
             const slugify = store.inputText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
             this.store.searched = slugify
-            console.log(this.store.searched)
         },
         getTypes(type_page) {
             axios.get(`${this.store.baseUrl}/api/types`, { params: { page: type_page } }).then((response) => {
                 if (response.data.success) {
                     this.types = response.data.results;
                     this.types.forEach(element => {
-                        this.options.push(element.name)
+                    this.options.push(element.name)
                     });
                 }
                 else {
@@ -59,10 +58,30 @@ export default {
 
             });
         },
-        filter() {
-            this.store.selectedType = this.type
-            console.log(this.store.selectedType)
+        RestaurateursList(){
+            if(this.store.selectedType){
+                    axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[0]}`).then((response) => {
+                    if (response.data.success) {
+                        this.store.restaurateurs = response.data.restaurateurs;
+                        this.store.currentPage = response.data.restaurateurs.current_page;
+                        this.store.lastPage = response.data.restaurateurs.last_page;
+                        }
+                }
+
+            )
+            if(this.store.selectedType[1]){
+                    axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[1]}`).then((response) => {
+                    if (response.data.success) {
+                        this.store.restaurateurstwo = response.data.restaurateurs;
+                        this.store.currentPage = response.data.restaurateurs.current_page;
+                        this.store.lastPage = response.data.restaurateurs.last_page;
+                        }
+                }
+
+            )}
+        
         }
+        },
     },
     mounted() {
         this.getTypes()
@@ -99,7 +118,7 @@ export default {
                 :close-on-select="false"
                 :searchable="true"
                 :create-option="true"
-                :options="options"
+                :options="options" @keyup.enter="RestaurateursList"
                 />
                 
                 <div class="w-100" id="navbarNav">

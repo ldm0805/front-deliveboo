@@ -5,5 +5,9 @@ export const store = reactive({
     inputText: '',
     searched: '',
     selectedType: null,
+    restaurateurs: [],
+    restaurateursrwo: [],
+    currentPage: 1,
+    lastPage: null,
 
 })
