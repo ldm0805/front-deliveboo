@@ -1,11 +1,13 @@
 <script>
+import Multiselect from '@vueform/multiselect'
 import axios from 'axios';
 import AppSearch from './AppSearch.vue'
 import { store } from '../store';
 export default {
     name: "AppHeader",
     components: {
-        AppSearch
+        AppSearch,
+        Multiselect
     },
     data() {
         return {
@@ -31,7 +33,8 @@ export default {
                     label: 'Contatti',
                     // routeName: 'contacts'
                 },
-            ]
+            ],
+            options: []
         }
 
     },
@@ -46,6 +49,9 @@ export default {
             axios.get(`${this.store.baseUrl}/api/types`, { params: { page: type_page } }).then((response) => {
                 if (response.data.success) {
                     this.types = response.data.results;
+                    this.types.forEach(element => {
+                        this.options.push(element.name)
+                    });
                 }
                 else {
 
@@ -86,17 +92,15 @@ export default {
                     </button> -->
                 </div>
 
-                <!-- Search -->
-                <div class="right-search d-flex">
-                    <AppSearch @search="searchAll"/>
-                </div>
-
                 <!-- Select -->
-                <select name="" id="" v-model="type" @change="filter">
-                    <option :value="type.name" v-for="(type) in types">
-                        {{ type.name }}
-                    </option>
-                </select>
+                <Multiselect class="mx-3"
+                v-model="store.selectedType"
+                mode="tags"
+                :close-on-select="false"
+                :searchable="true"
+                :create-option="true"
+                :options="options"
+                />
                 
                 <div class="w-100" id="navbarNav">
                     <ul class="d-flex list-unstyled gap-2 m-0 justify-content-end">
@@ -119,24 +123,26 @@ export default {
         </div>
     </header>
 </template>
-<style lang="scss" scoped>
-@use '../styles/partials/variables' as *;
 
-header {
-    height: 80px;
-}
+<style lang="scss" src="@vueform/multiselect/themes/default.css" >
+  @use '../styles/partials/variables' as *;
 
-.container-fluid {
+    header {
+        height: 80px;
+        .container-fluid {
+        
+            nav {
+                background-color: $primary_color !important;
+            }
+        
+            li {
+        
+                .nav-link {
+                    color: white;
+                }
+            }
 
-    nav {
-        background-color: $primary_color !important;
-    }
-
-    li {
-
-        .nav-link {
-            color: white;
         }
     }
-}
+
 </style>
