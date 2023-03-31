@@ -15,30 +15,23 @@ export default {
         addQuantity(plate) {
             if (this.store.cart.includes(plate)) {
                 plate.quantity++;
-                console.log(this.store.cart)
             } else {
                 plate.quantity++;
-                console.log(this.store.cart)
                 plate.quantity = 1;
                 this.store.cart.push(plate);
-                console.log(this.store.cart)
 
             }
         },
 
         decreaseQuantity(plate) {
             if (this.store.cart.includes(plate)) {
-                    plate.quantity--
-                    console.log(this.store.cart)
-
-                } else {
-                    plate.quantity == 0
-                    console.log(this.store.cart)
-
-                }
+                plate.quantity--
+            } else {
+                plate.quantity == 0
             }
-        },
-    mounted(){
+        }
+    },
+    mounted() {
 
         this.loading = true;
         axios.get(`${this.store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
