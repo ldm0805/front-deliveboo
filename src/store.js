@@ -6,8 +6,8 @@ export const store = reactive({
     searched: '',
     selectedType: null,
     restaurateurs: [],
-    restaurateursrwo: [],
     currentPage: 1,
     lastPage: null,
+    myData: [],
 
 })

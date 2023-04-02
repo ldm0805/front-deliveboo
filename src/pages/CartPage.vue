@@ -1,7 +1,6 @@
 <script>
 import { store } from '../store';
 export default {
-    name: 'CartPage',
     data() {
         return {
             store,
@@ -19,14 +18,33 @@ export default {
             this.totalPrice = total.toFixed(2)
         },
         myCheck() {
-            window.location.href = "http://127.0.0.1:8000/payment";
-            // this.$router.push('api/mycheck/pages');
-            // this.$store.dispatch('fetchmycheck');
-        }
+            location.reload();
+            window.location.href = "http://localhost:5173/braintree";
 
+        },
+        svuota() {
+            localStorage.clear();
+            location.reload();
+        },
     },
     mounted() {
-        this.addPrice(this.store.cart)
+        this.addPrice(this.store.cart);
+        const myData = localStorage.getItem('myData');
+        if (myData) {
+            this.store.cart = JSON.parse(myData);
+            if (Array.isArray(this.store.cart)) {
+                this.store.cart.forEach(plate => {
+                    if (typeof plate === 'object' && plate !== null && 'quantity' in plate) {
+                        const savedPlate = this.myData.find(savedPlate => savedPlate.id === plate.id);
+                        if (savedPlate) {
+                            plate.quantity = savedPlate.quantity;
+                        } else {
+                            plate.quantity = 0;
+                        }
+                    }
+                });
+            }
+        }
     },
 }
 </script>
@@ -52,6 +70,7 @@ export default {
     </div>
     <div class="mb-4">
         <button class="btn btn-sm btn-success" @click = "myCheck">Procedi con il tuo ordine</button>
+        <button class="btn btn-warning" @click="svuota">cestino</button>
     </div>
 </template>
 
