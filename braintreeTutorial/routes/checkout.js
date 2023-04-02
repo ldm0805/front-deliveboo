@@ -1,10 +1,11 @@
-import { Router } from 'express';
-const router = Router();
-import { BraintreeGateway, Environment } from 'braintree';
+
+const express = require('express');
+const router = express.Router();
+const braintree = require('braintree');
 
 router.post('/', (req, res, next) => {
-    const gateway = new BraintreeGateway({
-        environment: Environment.Sandbox,
+    const gateway = new braintree.BraintreeGateway({
+        environment: braintree.Environment.Sandbox,
         // Use your own credentials from the sandbox Control Panel here
         merchantId: 'y7bkdpct43k678pk',
         publicKey: '3d2jtcpf98p8jq9b',
@@ -31,4 +32,4 @@ router.post('/', (req, res, next) => {
     });
 });
 
-export default router;
+module.exports = router;
