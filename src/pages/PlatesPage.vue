@@ -26,17 +26,19 @@ export default {
         },
 
         decreaseQuantity(plate) {
-            if (store.myData.includes(plate)) {
-                plate.quantity--;
-            } else {
-                plate.quantity--;
-                const index = store.myData.findIndex((el) => el === plate);
-                if (index !== -1) {
-                    plate.quantity = store.myData[index].quantity;
+            if (plate.quantity > 0) {
+                if (store.myData.includes(plate)) {
+                    plate.quantity--;
+                } else {
+                    plate.quantity--;
+                    const index = store.myData.findIndex((el) => el === plate);
+                    if (index !== -1) {
+                        plate.quantity = store.myData[index].quantity;
+                    }
+                    store.myData.push(plate);
                 }
-                store.myData.push(plate);
+                localStorage.setItem('myData', JSON.stringify(this.myData));
             }
-            localStorage.setItem('myData', JSON.stringify(this.myData));
         }
     },
     mounted() {
