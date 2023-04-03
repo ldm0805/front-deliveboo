@@ -58,24 +58,29 @@ export default {
 
             });
         },
-        RestaurateursList() {
-            if (this.store.selectedType) {
-                for (let i = 0; i < this.store.selectedType.length; i++) {
-                    axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[i]}`).then((response) => {
-                        if (response.data.success) {
-                            if (i === 0) {
-                                console.log('entro 1')
-                                this.store.restaurateurs = response.data.restaurateurs;
-                                console.log(this.store.restaurateurs)
-                            } else {
-                                console.log('entro 3')
-                                this.store.restaurateurstwo = response.data.restaurateurs;
-                            }
-                            this.store.currentPage = response.data.restaurateurs.current_page;
-                            this.store.lastPage = response.data.restaurateurs.last_page;
-                        }
+        async RestaurateursList() {
+            try {
+                if (this.store.selectedType) {
+                    let restaurateurs = [];
+                    const promises = this.store.selectedType.map(type => {
+                        return axios.get(`${this.store.baseUrl}/api/types/${type}`)
+                            .then(response => {
+                                if (response.data.success) {
+                                    restaurateurs.push(...response.data.restaurateurs);
+                                    this.store.currentPage = response.data.restaurateurs.current_page;
+                                    this.store.lastPage = response.data.restaurateurs.last_page;
+                                }
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
                     });
+                    await Promise.all(promises);
+                    this.store.restaurateurs = restaurateurs;
+                    console.log(this.store.restaurateurs);
                 }
+            } catch (error) {
+                console.error(error);
             }
         }
     },
