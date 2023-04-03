@@ -49,7 +49,7 @@ export default {
                 if (response.data.success) {
                     this.types = response.data.results;
                     this.types.forEach(element => {
-                    this.options.push(element.name)
+                        this.options.push(element.name)
                     });
                 }
                 else {
@@ -58,30 +58,23 @@ export default {
 
             });
         },
-        RestaurateursList(){
-            if(this.store.selectedType){
-                    axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[0]}`).then((response) => {
-                    if (response.data.success) {
-                        this.store.restaurateurs = response.data.restaurateurs;
-                        this.store.currentPage = response.data.restaurateurs.current_page;
-                        this.store.lastPage = response.data.restaurateurs.last_page;
+        RestaurateursList() {
+            if (this.store.selectedType) {
+                for (let i = 0; i < this.store.selectedType.length; i++) {
+                    axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[i]}`).then((response) => {
+                        if (response.data.success) {
+                            if (i === 0) {
+                                this.store.restaurateurs = response.data.restaurateurs;
+                            } else {
+                                this.store.restaurateurstwo = response.data.restaurateurs;
+                            }
+                            this.store.currentPage = response.data.restaurateurs.current_page;
+                            this.store.lastPage = response.data.restaurateurs.last_page;
                         }
+                    });
                 }
-
-            )
-            if(this.store.selectedType[1]){
-                    axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[1]}`).then((response) => {
-                    if (response.data.success) {
-                        this.store.restaurateurstwo = response.data.restaurateurs;
-                        this.store.currentPage = response.data.restaurateurs.current_page;
-                        this.store.lastPage = response.data.restaurateurs.last_page;
-                        }
-                }
-
-            )}
-        
+            }
         }
-        },
     },
     mounted() {
         this.getTypes()
@@ -144,24 +137,24 @@ export default {
 </template>
 
 <style lang="scss" src="@vueform/multiselect/themes/default.css" >
-  @use '../styles/partials/variables' as *;
+@use '../styles/partials/variables' as *;
 
-    header {
-        height: 80px;
-        .container-fluid {
-        
-            nav {
-                background-color: $primary_color !important;
-            }
-        
-            li {
-        
-                .nav-link {
-                    color: white;
-                }
-            }
+header {
+    height: 80px;
 
+    .container-fluid {
+
+        nav {
+            background-color: $primary_color !important;
         }
-    }
 
+        li {
+
+            .nav-link {
+                color: white;
+            }
+        }
+
+    }
+}
 </style>

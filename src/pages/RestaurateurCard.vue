@@ -25,14 +25,14 @@ export default {
                 <h5>Ristorante: {{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
-<!--             <template v-if="restaurateur.types.length">
+            <template v-if="restaurateur.types.length">
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
                     <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
-                        :key="index">{{ tag
+                        :key="index">{{ tag.name
                         }}</span>
                 </div>
-            </template> -->
+            </template>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
                 piatti</router-link>
         </div>
@@ -59,4 +59,5 @@ export default {
     .card-img-top {
         height: 200px;
     }
-}</style>
+}
+</style>
