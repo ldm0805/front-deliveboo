@@ -22,7 +22,7 @@ export default {
                 }
                 store.myData.push(plate);
             }
-            localStorage.setItem('myData', JSON.stringify(this.myData));
+            localStorage.setItem(`myData-${this.$route.params.slug}`, JSON.stringify(this.myData));
         },
 
         decreaseQuantity(plate) {
@@ -37,13 +37,15 @@ export default {
                     }
                     store.myData.push(plate);
                 }
-                localStorage.setItem('myData', JSON.stringify(this.myData));
+                localStorage.setItem(`myData-${this.$route.params.slug}`, JSON.stringify(this.myData));
+
             }
         }
+
     },
     mounted() {
         this.loading = true;
-        const myData = localStorage.getItem('myData');
+        const myData = localStorage.getItem(`myData-${this.$route.params.slug}`);
         if (myData) {
             this.myData = JSON.parse(myData);
             this.loading = false;
@@ -53,6 +55,7 @@ export default {
                     this.myData = response.data.plates;
                     localStorage.setItem('myData', JSON.stringify(this.myData));
                     this.loading = false;
+
                 } else {
                     this.$router.push({ name: 'not-found' });
                 }

@@ -5,7 +5,7 @@ export default {
         return {
             store,
             totalPrice: 0,
-            mydata: [],
+            myData: [],
         };
     },
     methods: {
@@ -29,12 +29,12 @@ export default {
         },
     },
     mounted() {
-        const myData = localStorage.getItem('myData');
+        const myData = localStorage.getItem(`myData-leonardod`);
         if (myData) {
             this.store.cart = JSON.parse(myData);
             let arrayCart = Object.values(this.store.cart)
             if (Array.isArray(arrayCart)) {
-                this.store.cart  = arrayCart.filter(word => word.quantity > 0)
+                this.store.cart = arrayCart.filter(word => word.quantity > 0)
                 this.addPrice(this.store.cart);
             }
         }

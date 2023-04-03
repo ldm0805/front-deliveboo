@@ -25,10 +25,11 @@ export default {
                 <h5>Ristorante: {{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
-            <div >
+            <div>
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name }}</span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
+                        :key="index">{{ tag.name }}</span>
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
@@ -45,10 +46,10 @@ export default {
                 <h5>Ristorante: {{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
-            <div >
+            <div>
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span class="badge bg-info text-white text-uppercase" >{{ restaurateur.types }}</span>
+                    <span class="badge bg-info text-white text-uppercase">{{ restaurateur.types }}</span>
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
