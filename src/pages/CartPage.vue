@@ -5,6 +5,7 @@ export default {
         return {
             store,
             totalPrice: 0,
+            mydata: [],
         };
     },
     methods: {
@@ -32,15 +33,15 @@ export default {
         const myData = localStorage.getItem('myData');
         if (myData) {
             this.store.cart = JSON.parse(myData);
-            if (Array.isArray(this.store.cart)) {
-                this.store.cart.forEach(plate => {
-                    if (typeof plate === 'object' && plate !== null && 'quantity' in plate) {
-                        const savedPlate = this.myData.find(savedPlate => savedPlate.id === plate.id);
-                        if (savedPlate) {
-                            plate.quantity = savedPlate.quantity;
-                        } else {
-                            plate.quantity = 0;
-                        }
+            let ciao = Object.values(this.store.cart)
+            if (Array.isArray(ciao)) {
+                ciao.forEach(plate => {
+                    console.log(plate.quantity) 
+                    if(plate.quantity > 0 ){              
+                        this.store.cart = JSON.parse(myData)  
+                    }
+                    else{
+                        this.store.cart = 0
                     }
                 });
             }
