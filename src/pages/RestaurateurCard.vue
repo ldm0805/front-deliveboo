@@ -15,7 +15,7 @@ export default {
 </script>
 <!-- Ciao sono un -->
 <template>
-    <div class="card">
+    <div class="card" v-if="store.selectedType == null">
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
             alt="">
@@ -25,14 +25,32 @@ export default {
                 <h5>Ristorante: {{ restaurateur.name }}</h5>
             </div>
             <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
-            <template v-if="restaurateur.types.length">
+            <div >
                 <div class="d-flex gap-2 flex-wrap align-items-center">
                     <span>Tag: </span>
-                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
-                        :key="index">{{ tag.name
-                        }}</span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase" :key="index">{{ tag.name }}</span>
                 </div>
-            </template>
+            </div>
+            <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
+                piatti</router-link>
+        </div>
+    </div>
+    <div v-else>
+        <img class="card-img-top"
+            :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
+            alt="">
+
+        <div class="card-body">
+            <div class="card-title">
+                <h5>Ristorante: {{ restaurateur.name }}</h5>
+            </div>
+            <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
+            <div >
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                    <span>Tag: </span>
+                    <span class="badge bg-info text-white text-uppercase" >{{ restaurateur.types }}</span>
+                </div>
+            </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
                 piatti</router-link>
         </div>

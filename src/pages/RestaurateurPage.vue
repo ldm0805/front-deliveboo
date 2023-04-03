@@ -83,11 +83,6 @@ export default {
                     <div v-for="restaurateur in this.store.restaurateurs"  class="my-3" :key="restaurateur.id">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>
-                    <div v-if="this.store.selectedType[1]">
-                    <div v-for="restaurateur in this.store.restaurateurstwo"  class="my-3" :key="restaurateur.id">
-                        <RestaurateurCard :restaurateur="restaurateur"/>                            
-                    </div>                       
-                    </div>
                 </div>
             </div>
         </div>

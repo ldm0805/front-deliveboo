@@ -64,8 +64,11 @@ export default {
                     axios.get(`${this.store.baseUrl}/api/types/${this.store.selectedType[i]}`).then((response) => {
                         if (response.data.success) {
                             if (i === 0) {
+                                console.log('entro 1')
                                 this.store.restaurateurs = response.data.restaurateurs;
+                                console.log(this.store.restaurateurs)
                             } else {
+                                console.log('entro 3')
                                 this.store.restaurateurstwo = response.data.restaurateurs;
                             }
                             this.store.currentPage = response.data.restaurateurs.current_page;
@@ -111,7 +114,7 @@ export default {
                 :close-on-select="false"
                 :searchable="true"
                 :create-option="true"
-                :options="options" @keyup.enter="RestaurateursList"
+                :options="options" @click="RestaurateursList" @keyup.enter="RestaurateursList"
                 />
                 
                 <div class="w-100" id="navbarNav">
