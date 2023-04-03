@@ -1,13 +1,16 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
+const dataArray = 'storage-key';
+
 
 export default {
     data() {
         return {
             store,
             myData: [],
-            loading: false
+            loading: false,
+            plateSlug: [],
         }
     },
     methods: {
@@ -22,7 +25,7 @@ export default {
                 }
                 store.myData.push(plate);
             }
-            localStorage.setItem(`myData-${this.$route.params.slug}`, JSON.stringify(this.myData));
+            localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
         },
 
         decreaseQuantity(plate) {
@@ -37,38 +40,38 @@ export default {
                     }
                     store.myData.push(plate);
                 }
-                localStorage.setItem(`myData-${this.$route.params.slug}`, JSON.stringify(this.myData));
+                localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
 
             }
         }
 
     },
     mounted() {
-        this.loading = true;
-        const myData = localStorage.getItem(`myData-${this.$route.params.slug}`);
-        if (myData) {
-            this.myData = JSON.parse(myData);
-            this.loading = false;
-        } else {
-            axios.get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then(response => {
-                if (response.data.success) {
-                    this.myData = response.data.plates;
-                    localStorage.setItem('myData', JSON.stringify(this.myData));
+        axios.get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
+            if (response.data.success) {
+                if (window.localStorage.length == 0) {
+                    this.plateSlug = response.data.plates;
+                    this.loading = false;
+                }
+                else {
+                    let myData = (JSON.parse(localStorage.getItem(dataArray)));
+                    this.plateSlug = response.data.plates;
                     this.loading = false;
 
-                } else {
-                    this.$router.push({ name: 'not-found' });
+                    for (let i in myData) {
+                        if (myData[i].restaurateur_id == this.plateSlug[i]['restaurateur_id']) {
+                            this.plateSlug = myData;
+                        }
+                    }
                 }
-            }).catch(error => {
-                console.log(error);
-            });
-        }
+            }
+        })
     }
 }
 </script>
 
 <template lang="">
-    <div v-for="plate in myData" :key="plate.id">
+    <div v-for="plate in this.plateSlug" :key="plate.id">
     <div class="name">{{ plate.name }}</div>
     <div class="price">{{ plate.price }}</div>
         <div class="quantity">
