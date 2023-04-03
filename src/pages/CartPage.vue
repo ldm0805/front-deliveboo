@@ -1,5 +1,8 @@
 <script>
+import axios from 'axios';
+
 import { store } from '../store';
+const dataArray = 'storage-key';
 export default {
     data() {
         return {
@@ -11,7 +14,6 @@ export default {
     methods: {
         addPrice(cart) {
             let total = 0;
-
             for (let i = 0; i < this.store.cart.length; i++) {
                 const itemTotal = parseFloat(this.store.cart[i].price) * this.store.cart[i].quantity;
                 total += itemTotal;
@@ -29,23 +31,23 @@ export default {
         },
     },
     mounted() {
-        const myData = localStorage.getItem(`myData-leonardod`);
-        if (myData) {
-            this.store.cart = JSON.parse(myData);
-            let arrayCart = Object.values(this.store.cart)
+        const personalPlate = JSON.parse(localStorage.getItem(dataArray));
+        if (personalPlate) {
+            this.myData = personalPlate;
+            let arrayCart = Object.values(this.myData)
             if (Array.isArray(arrayCart)) {
-                this.store.cart = arrayCart.filter(word => word.quantity > 0)
-                this.addPrice(this.store.cart);
+                this.myData = arrayCart.filter(word => word.quantity > 0)
+                this.addPrice(this.myData);
             }
         }
     },
 }
 </script>
-
+<!-- ciao -->
 <template lang="">
     <div>
        <ul>
-        <li v-for="plate in this.store.cart">
+        <li v-for="plate in this.myData">
             <div class="card" style="width:18rem;">
                 <img class="card-img-top"
             :src="plate.image != null ? `${this.store.baseUrl}/storage/${plate.image}` : 'https://picsum.photos/200/300'"
