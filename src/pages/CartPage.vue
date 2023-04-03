@@ -29,21 +29,13 @@ export default {
         },
     },
     mounted() {
-        this.addPrice(this.store.cart);
         const myData = localStorage.getItem('myData');
         if (myData) {
             this.store.cart = JSON.parse(myData);
-            let ciao = Object.values(this.store.cart)
-            if (Array.isArray(ciao)) {
-                ciao.forEach(plate => {
-                    console.log(plate.quantity) 
-                    if(plate.quantity > 0 ){              
-                        this.store.cart = JSON.parse(myData)  
-                    }
-                    else{
-                        this.store.cart = 0
-                    }
-                });
+            let arrayCart = Object.values(this.store.cart)
+            if (Array.isArray(arrayCart)) {
+                this.store.cart  = arrayCart.filter(word => word.quantity > 0)
+                this.addPrice(this.store.cart);
             }
         }
     },
