@@ -14,8 +14,8 @@ export default {
     methods: {
         addPrice(cart) {
             let total = 0;
-            for (let i = 0; i < this.store.cart.length; i++) {
-                const itemTotal = parseFloat(this.store.cart[i].price) * this.store.cart[i].quantity;
+            for (let i = 0; i < cart.length; i++) {
+                const itemTotal = parseFloat(cart[i].price) * cart[i].quantity;
                 total += itemTotal;
             }
             this.totalPrice = total.toFixed(2)
