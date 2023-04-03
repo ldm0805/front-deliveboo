@@ -43,7 +43,7 @@ export default {
     },
 }
 </script>
-
+<!-- ciao -->
 <template lang="">
     <div>
        <ul>
