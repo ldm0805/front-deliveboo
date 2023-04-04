@@ -48,8 +48,9 @@ export default {
             <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
             <div>
                 <div class="d-flex gap-2 flex-wrap align-items-center">
-                    <span>Tag: </span>
-                    <span class="badge bg-info text-white text-uppercase">{{ restaurateur.types }}</span>
+                    <span>Tags: </span>
+                    <span v-for="type in restaurateur.types" class="badge bg-info text-white text-uppercase">{{ type
+                    }}</span>
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
