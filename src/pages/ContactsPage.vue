@@ -13,6 +13,8 @@ export default {
             total: '',
             errors: {},
             success: false,
+            loading: false,
+
             store,
         }
     },
@@ -30,9 +32,11 @@ export default {
 
             }
             console.log(data)
+            this.loading = true;
             axios.post(`${this.store.baseUrl}/api/contacts`, data).then((response) => {
                 if (!response.data.success) {
                     this.errors = response.data.errors
+                    this.loading = false;
                 }
                 else {
                     this.name = '';
@@ -41,6 +45,10 @@ export default {
                     this.phone = '';
                     this.address = '';
                     this.success = true;
+                    this.loading = false;
+                    setTimeout(() => {
+                        this.$router.push({ 'name': 'thank-you' });
+                    }, 2000)
                 }
             });
         }
@@ -89,7 +97,7 @@ export default {
                             </div>
                 </div>
                 <div class="mt-4 text-center">
-                    <button type="submit" class="send_email">Procedi con il pagamento</button>
+                    <button type="submit" class="send_email" :disabled="loading">{{loading ? 'Sto inviando...' : 'Invia'}}</button>
                 </div>
             </div>
         </form>

@@ -8,6 +8,8 @@ import PlatesPage from './pages/PlatesPage.vue';
 import CartPage from './pages/CartPage.vue'
 import BraintreePage from './pages/BraintreePage.vue'
 import NotFound from './pages/NotFound.vue';
+import ThankYou from './pages/ThankYou.vue';
+
 
 
 
@@ -42,6 +44,11 @@ const router = createRouter({
             path: '/braintree',
             name: 'BraintreePage',
             component: BraintreePage
+        },
+        {
+            path: '/thank-you',
+            name: 'thank-you',
+            component: ThankYou
         },
         {
             path: '/*',
