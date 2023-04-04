@@ -8,7 +8,7 @@
 
     braintree.dropin.create({
         // Insert your tokenization key here
-        authorization: 'sandbox_mfb44vg7_y7bkdpct43k678pk',
+        authorization: 'sandbox_tvb5dd36_y7bkdpct43k678pk',
         container: '#dropin-container'
     }, function (createErr, instance) {
         button.addEventListener('click', function () {
@@ -34,6 +34,7 @@
                     if (result.success) {
                         $('#checkout-message').html('<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
                     } else {
+                        console.log(result);
                         $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
                     }
                 });
