@@ -24,11 +24,12 @@ export default {
                 mail: this.mail,
                 phone: this.phone,
                 address: this.address,
-                date: this.name,
+                date: '2020/04/12',
                 total: this.store.total,
                 slug: this.name
 
             }
+            console.log(data)
             axios.post(`${this.store.baseUrl}/api/contacts`, data).then((response) => {
                 if (!response.data.success) {
                     this.errors = response.data.errors
