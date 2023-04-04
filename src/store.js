@@ -9,5 +9,7 @@ export const store = reactive({
     currentPage: 1,
     lastPage: null,
     myData: [],
+    total: 0,
+
 
 })

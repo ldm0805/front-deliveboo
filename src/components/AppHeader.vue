@@ -85,7 +85,6 @@ export default {
                     });
                     await Promise.all(promises);
                     this.store.restaurateurs = Object.values(restaurateurs);
-                    console.log(this.store.restaurateurs);
                 }
             } catch (error) {
                 console.error(error);

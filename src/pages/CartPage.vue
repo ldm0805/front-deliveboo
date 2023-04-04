@@ -7,10 +7,11 @@ const dataArray = 'storage-key';
 
 export default {
     components: {
-		ContactsPage,
-	},
+        ContactsPage,
+    },
     data() {
         return {
+
             store,
             totalPrice: 0,
             myData: [],
@@ -45,6 +46,7 @@ export default {
                 this.addPrice(this.myData);
             }
         }
+        this.store.total = this.totalPrice
     },
 }
 </script>
