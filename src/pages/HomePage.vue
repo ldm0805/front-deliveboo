@@ -1,16 +1,21 @@
 <script>
-export default {
-    name: "HomePage"
-}
+    import AppJumbotron from '../components/AppJumbotron.vue';
+    export default {
+        name: "HomePage",
+        components: {
+            AppJumbotron
+        }
+    }
 </script>
 <template lang="">
-    <div class="container">
+    <div class="container px-0 text-center">
         <div class="row">
-            <div class="col-12">
-                <h1 class="text-center">Deliveboo</h1>
-                <p class="text-center">Benvenuti nel Blog di boolean</p>
+            <div class="col">
+                <h1>Hai Fame?</h1>
+                <router-link :to="{ name: 'RestaurateurPage' }" class="btn btn-outline-dark">Trova dei ristoranti</router-link>
             </div>
         </div>
     </div>
+    
 </template>
 <style lang="scss" scoped></style>
