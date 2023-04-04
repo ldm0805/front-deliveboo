@@ -2,12 +2,14 @@
 import axios from 'axios';
 import { store } from '../store';
 import RestaurateurCard from './RestaurateurCard.vue';
+import AppJumbotron from '../components/AppJumbotron.vue';
 
 export default {
     name: "RestaurateurPage",
 
     components: {
         RestaurateurCard,
+        AppJumbotron
     },
 
     data() {
@@ -42,6 +44,7 @@ export default {
 </script>
 
 <template lang="">
+    <AppJumbotron />
     <div class="container" v-if="this.store.selectedType == null">
         <div class="row">
             <div class="parent">                

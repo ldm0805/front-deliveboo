@@ -13,7 +13,7 @@ export default {
             type: '',
             store,
             currentPage: 1,
-            types: ['1', '2'],
+            types: [],
             menuItems: [
                 {
                     label: 'Homepage',
