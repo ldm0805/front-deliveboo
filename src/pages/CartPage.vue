@@ -1,9 +1,14 @@
 <script>
 import axios from 'axios';
+import ContactsPage from './ContactsPage.vue'
 
 import { store } from '../store';
 const dataArray = 'storage-key';
+
 export default {
+    components: {
+		ContactsPage,
+	},
     data() {
         return {
             store,
@@ -45,28 +50,35 @@ export default {
 </script>
 <!-- ciao -->
 <template lang="">
+<div class="d-flex justify-content-between">
     <div>
-       <ul>
-        <li v-for="plate in this.myData">
-            <div class="card" style="width:18rem;">
-                <img class="card-img-top"
-            :src="plate.image != null ? `${this.store.baseUrl}/storage/${plate.image}` : 'https://picsum.photos/200/300'"
-            alt="">
-              <div class="card-body">
-                <h5 class="card-title"> {{ plate.name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted "> {{ plate.price }}</h6>
-                <p class="card-text"> {{ plate.description }}</p>
-                <p class="card-text"><strong>Totale prodotto:</strong>  {{ plate.quantity }} x {{ plate.price }}  &euro;</p>
-              </div>
+        <div>
+            <ul>
+                <li v-for="plate in this.myData">
+                    <div class="card" style="width:18rem;">
+                        <img class="card-img-top"
+                    :src="plate.image != null ? `${this.store.baseUrl}/storage/${plate.image}` : 'https://picsum.photos/200/300'"
+                    alt="">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ plate.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted "> {{ plate.price }}</h6>
+                        <p class="card-text"> {{ plate.description }}</p>
+                        <p class="card-text"><strong>Totale prodotto:</strong>  {{ plate.quantity }} x {{ plate.price }}  &euro;</p>
+                    </div>
+                    </div>
+                </li>
+                Totale ordine: {{ totalPrice }} &euro;
+            </ul>
+        </div>
+            <div class="mb-4">
+                <button class="btn btn-sm btn-success" @click="myCheck">Procedi con il tuo ordine</button>
+                <button class="btn btn-warning" @click="svuota">cestino</button>
             </div>
-        </li>
-        Totale ordine: {{ totalPrice }} &euro;
-       </ul>
     </div>
-    <div class="mb-4">
-        <button class="btn btn-sm btn-success" @click = "myCheck">Procedi con il tuo ordine</button>
-        <button class="btn btn-warning" @click="svuota">cestino</button>
+    <div class="w-50 d-flex justify-content-center">
+        <ContactsPage></ContactsPage>
     </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
