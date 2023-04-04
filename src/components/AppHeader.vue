@@ -61,12 +61,20 @@ export default {
         async RestaurateursList() {
             try {
                 if (this.store.selectedType) {
-                    let restaurateurs = [];
+                    const restaurateurs = {};
                     const promises = this.store.selectedType.map(type => {
                         return axios.get(`${this.store.baseUrl}/api/types/${type}`)
                             .then(response => {
                                 if (response.data.success) {
-                                    restaurateurs.push(...response.data.restaurateurs);
+                                    const currentRestaurateurs = response.data.restaurateurs;
+                                    currentRestaurateurs.forEach(restaurateur => {
+                                        if (!restaurateurs[restaurateur.slug]) {
+                                            restaurateur.types = [type];
+                                            restaurateurs[restaurateur.slug] = restaurateur;
+                                        } else {
+                                            restaurateurs[restaurateur.slug].types.push(type);
+                                        }
+                                    });
                                     this.store.currentPage = response.data.restaurateurs.current_page;
                                     this.store.lastPage = response.data.restaurateurs.last_page;
                                 }
@@ -76,7 +84,7 @@ export default {
                             });
                     });
                     await Promise.all(promises);
-                    this.store.restaurateurs = restaurateurs;
+                    this.store.restaurateurs = Object.values(restaurateurs);
                     console.log(this.store.restaurateurs);
                 }
             } catch (error) {
