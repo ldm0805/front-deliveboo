@@ -18,8 +18,9 @@
     }
 </script>
 <template lang="">
-    <section class="jumbotron d-flex align-items-center justify-content-center my-text-light">
-			<AppSelect />
+    <section class="jumbotron d-flex align-items-center justify-content-center my-text-light flex-column">
+			<h1>Sì che hai fame</h1>
+			<AppSelect class="w-50" />
 	</section>
 </template>
 <style lang="scss" scoped>
