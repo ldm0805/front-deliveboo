@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col">
                 <h1>Hai Fame?</h1>
-                <a href="" class="btn btn-outline-dark">Trova dei ristoranti</a> 
+                <router-link :to="{ name: 'RestaurateurPage' }" class="btn btn-outline-dark">Trova dei ristoranti</router-link>
             </div>
         </div>
     </div>
