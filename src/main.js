@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const button = document.querySelector('#submit-button');
+    var button = document.querySelector('#submit-button');
 
     braintree.dropin.create({
         authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
@@ -14,10 +14,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }, function (err, instance) {
         button.addEventListener('click', function () {
             instance.requestPaymentMethod(function (err, payload) {
-                // Submit payload.nonce to your server
+                fetch('/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nonce: payload.nonce })
+                })
+                    .then(function (response) {
+                        // Handle the response from the server
+                    })
+                    .catch(function (error) {
+                        // Handle errors that occurred during the fetch request
+                    });
             });
         })
     });
+
 });
 
 createApp(App).use(router).mount('#app')
