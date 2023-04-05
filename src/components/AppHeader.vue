@@ -25,14 +25,14 @@ export default {
                     label: 'Ristoranti',
                     routeName: 'RestaurateurPage'
                 },
-                {
-                    label: 'Braintree',
-                    routeName: 'BraintreePage'
-                },
-                {
-                    label: 'Contatti',
-                    // routeName: 'contacts'
-                },
+                // {
+                //     label: 'Braintree',
+                //     routeName: 'BraintreePage'
+                // },
+                // {
+                //     label: 'Contatti',
+                //     // routeName: 'contacts'
+                // },
             ],
             options: []
         }
@@ -183,9 +183,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @use '../styles/partials/variables' as *;
+@use '../styles/partials/variables' as *;
 
-    header {
-        height: 80px;
-    }
+header {
+    height: 80px;
+}
 </style>

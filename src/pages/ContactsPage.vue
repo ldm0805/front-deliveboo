@@ -58,51 +58,55 @@ export default {
 </script>
 
 <template lang="">
-    <div class="w-50">
-        <form @submit.prevent="sendForm">
-            <div class="row">
+    <div class="mt-4 d-flex justify-content-center">
+
+        <div class="w-50">
+            <form @submit.prevent="sendForm">
+                <div class="row">
                 <div>
                     <label class="control-label" for="nome">Nome:</label>
                     <input type="text" class="form-control" name="name" id="name" v-model="name" placeholder="nome">
-                <div v-for="(error, index) in errors.name" :key="`message-error-${index}`" class="text-danger">
-                            {{error}}
-                            </div>
+                    <div v-for="(error, index) in errors.name" :key="`message-error-${index}`" class="text-danger">
+                        {{error}}
+                    </div>
                 </div>
                 <div>
                     <label class="control-label" for="cognome">Cognome:</label>
                     <input type="text" class="form-control" name="surname" id="surname" v-model="surname" placeholder="cognome">
-                <div v-for="(error, index) in errors.surname" :key="`message-error-${index}`" class="text-danger">
-                            {{error}}
-                            </div>
+                    <div v-for="(error, index) in errors.surname" :key="`message-error-${index}`" class="text-danger">
+                        {{error}}
+                    </div>
                 </div>
                 <div>
                     <label class="control-label" for="email">Email:</label>
                     <input type="text" class="form-control" name="mail" id="mail" v-model="mail" placeholder="email">
-                <div v-for="(error, index) in errors.mail" :key="`message-error-${index}`" class="text-danger">
-                            {{error}}
-                            </div>
+                    <div v-for="(error, index) in errors.mail" :key="`message-error-${index}`" class="text-danger">
+                        {{error}}
+                    </div>
                 </div>
                 <div>
                     <label class="control-label" for="telefono">Telefono:</label>
                     <input type="text" class="form-control" name="phone" id="phone" v-model="phone" placeholder="telefono">
-                <div v-for="(error, index) in errors.phone" :key="`message-error-${index}`" class="text-danger">
-                            {{error}}
-                            </div>
+                    <div v-for="(error, index) in errors.phone" :key="`message-error-${index}`" class="text-danger">
+                        {{error}}
+                    </div>
                 </div>
                 <div>
                     <label class="control-label" for="indirizzo">Indirizzo:</label>
                     <input type="text" class="form-control" name="address" id="address" v-model="address" placeholder="indirizzo">
                 <div v-for="(error, index) in errors.address" :key="`message-error-${index}`" class="text-danger">
                             {{error}}
-                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <div id="dropin-container"></div>
+                        <button type="submit" id="submit-button"  class="send_email" :disabled="loading">{{loading ? 'Sto inviando...' : 'Invia'}}</button>
+                    </div>
                 </div>
-                <div class="mt-4 text-center">
-                    <button type="submit" class="send_email" :disabled="loading">{{loading ? 'Sto inviando...' : 'Invia'}}</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</template>
+    </template>
 
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
@@ -120,5 +124,9 @@ button {
         background-color: $primary_color;
         color: white;
     }
+}
+
+label {
+    margin: .5em 0em;
 }
 </style>

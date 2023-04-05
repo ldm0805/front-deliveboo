@@ -1,12 +1,35 @@
+<script>
+import ContactsPage from './ContactsPage.vue'
+import { store } from '../store';
+import { onMounted, ref } from 'vue';
+export default {
+    components: {
+        ContactsPage,
+    },
+    data() {
+        return {
+            store,
+            totalPrice: 0,
+            myData: [],
+        };
+    },
+    methods: {
+        reloadPage() {
+            location.reload();
+        }
+    },
+    mounted() {
+        this.reloadPage;
+    }
+}
+</script>
 
 <template lang="">
-    <div id="dropin-container"></div>
- <button id="submit-button" class="button button--small button--green">Purchase</button>
  
- </template>
-<script>
+        <ContactsPage></ContactsPage>
 
-</script>
+
+ </template>
 <style lang="scss" scoped>
 .button {
     cursor: pointer;

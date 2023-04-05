@@ -77,9 +77,6 @@ export default {
                 <button class="btn btn-warning" @click="svuota">cestino</button>
             </div>
     </div>
-    <div class="w-50 d-flex justify-content-center">
-        <ContactsPage></ContactsPage>
-    </div>
 </div>
 </template>
 
