@@ -126,39 +126,7 @@ export default {
                             </button>
                         </div>
                     </a>
-                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
                 </div>
-
-                <!-- Select -->
-
-                <!-- <Multiselect class="mx-3"
-                v-model="store.selectedType"
-                mode="tags"
-                :close-on-select="false"
-                :searchable="true"
-                :create-option="true"
-                :options="options" @click="RestaurateursList" @keyup.enter="RestaurateursList" 
-
-                <style src="@vueform/multiselect/themes/default.css" >
-                    
-                    .container-fluid {
-
-                        nav {
-                            background-color: $primary_color !important;
-                        }
-
-                        li {
-
-                            .nav-link {
-                                color: white;
-                            }
-                        }
-
-                    }
-                </style>
-                /> -->
                 
                 <div class="w-100" id="navbarNav">
                     <ul class="d-flex list-unstyled gap-2 m-0 justify-content-end">
