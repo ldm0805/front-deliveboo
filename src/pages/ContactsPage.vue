@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
+const dataArray = 'storage-key';
 export default {
     data() {
         return {
@@ -19,6 +20,14 @@ export default {
         }
     },
     methods: {
+        addPrice(cart) {
+            let total = 0;
+            for (let i = 0; i < cart.length; i++) {
+                const itemTotal = parseFloat(cart[i].price) * cart[i].quantity;
+                total += itemTotal;
+            }
+            this.totalPrice = total.toFixed(2)
+        },
         sendForm() {
             const data = {
                 name: this.name,
@@ -52,6 +61,18 @@ export default {
                 }
             });
         }
+    },
+    mounted(){
+        const personalPlate = JSON.parse(localStorage.getItem(dataArray));
+        if (personalPlate) {
+            this.myData = personalPlate;
+            let arrayCart = Object.values(this.myData)
+            if (Array.isArray(arrayCart)) {
+                this.myData = arrayCart.filter(word => word.quantity > 0)
+                this.addPrice(this.myData);
+            }
+        }
+        this.store.total = this.totalPrice
     }
 
 }

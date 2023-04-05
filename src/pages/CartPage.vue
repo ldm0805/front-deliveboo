@@ -25,6 +25,8 @@ export default {
                 total += itemTotal;
             }
             this.totalPrice = total.toFixed(2)
+            this.store.total = this.totalPrice
+            console.log(this.store.total)
         },
         myCheck() {
             location.reload();
