@@ -22,12 +22,8 @@ export default {
     }
 }
 </script>
-
 <template lang="">
- 
         <ContactsPage></ContactsPage>
-
-
  </template>
 <style lang="scss" scoped>
 .button {

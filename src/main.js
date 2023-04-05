@@ -4,7 +4,7 @@ import App from './App.vue'
 import { router } from './router'
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
+//Js per il pagamento di braintree
 document.addEventListener('DOMContentLoaded', function () {
     var button = document.querySelector('#submit-button');
 

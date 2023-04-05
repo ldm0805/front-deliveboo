@@ -11,13 +11,13 @@ export default {
     },
     data() {
         return {
-
             store,
             totalPrice: 0,
             myData: [],
         };
     },
     methods: {
+        // Prezzo totale
         addPrice(cart) {
             let total = 0;
             for (let i = 0; i < cart.length; i++) {
@@ -28,16 +28,18 @@ export default {
             this.store.total = this.totalPrice
             console.log(this.store.total)
         },
+        // Pagamento
         myCheck() {
             location.reload();
             window.location.href = "http://localhost:5173/braintree";
-
         },
+        // Svuotare il carrello
         svuota() {
             localStorage.clear();
             location.reload();
         },
     },
+    // Localstorage 
     mounted() {
         const personalPlate = JSON.parse(localStorage.getItem(dataArray));
         if (personalPlate) {
@@ -52,7 +54,7 @@ export default {
     },
 }
 </script>
-<!-- ciao -->
+
 <template lang="">
 <div :class="(this.myData.length) ? 'd-flex justify-content-between' : 'd-flex justify-content-center align-items-center alternative'">
     <div class="w-100">
@@ -94,69 +96,82 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+
 li {
     list-style-type: none;
     margin: 20px 30px;
-    img{
+
+    img {
         height: 280px;
         object-fit: cover;
     }
 }
-.card{
+
+.card {
     transition: all 0.25s;
 }
-.card:hover{
+
+.card:hover {
     scale: 1.05;
     box-shadow: 0px 0px 10px$primary_color;
 }
-.total{
+
+.total {
     font-weight: bold;
     font-size: 25px;
     color: rgb(78, 78, 78);
-    .number{
+
+    .number {
         color: $primary_color;
     }
 }
 
-.alternative{
+.alternative {
     height: 70vh;
 }
-.primary{
-        button{
-            background-color: transparent;
-            border: 3px solid;
-            border-radius: 10px;
-            padding: 5px 5px;
-            font-weight: bold;
-            transition: all 0.25s;
-        }
-        .pay{
-                color: $primary_color;
-                border-color: $primary_color;
-            }
-            .pay:hover {
-                background-color: $primary_color;
-                color: white;
-            }
-        .close{
-            color: rgb(78, 78, 78);
-            border-color: rgb(78, 78, 78);
-        }
-        .close:hover {
-                background-color: rgb(78, 78, 78);
-                color: $primary_color;
-            }
+
+.primary {
+    button {
+        background-color: transparent;
+        border: 3px solid;
+        border-radius: 10px;
+        padding: 5px 5px;
+        font-weight: bold;
+        transition: all 0.25s;
     }
-.second-view{
+
+    .pay {
+        color: $primary_color;
+        border-color: $primary_color;
+    }
+
+    .pay:hover {
+        background-color: $primary_color;
+        color: white;
+    }
+
+    .close {
+        color: rgb(78, 78, 78);
+        border-color: rgb(78, 78, 78);
+    }
+
+    .close:hover {
+        background-color: rgb(78, 78, 78);
+        color: $primary_color;
+    }
+}
+
+.second-view {
     display: flex;
     flex-direction: column;
     align-items: center;
-    p{
+
+    p {
         font-weight: bold;
         font-size: 30px;
         color: rgb(78, 78, 78);
 
-        i{
+        i {
             color: $primary_color;
             font-size: 40px;
             position: relative;
@@ -165,25 +180,25 @@ li {
     }
 
     button {
-    background-color: transparent;
-    border: 3px solid $primary_color;
-    border-radius: 10px;
-    padding: 5px 5px;
-    color: $primary_color;
-    font-weight: bold;
-    transition: all 0.25s;
-    display: flex;
-    align-items: center;
+        background-color: transparent;
+        border: 3px solid $primary_color;
+        border-radius: 10px;
+        padding: 5px 5px;
+        color: $primary_color;
+        font-weight: bold;
+        transition: all 0.25s;
+        display: flex;
+        align-items: center;
 
-    i{
-        margin: 5px 20px;
-        font-size: 30px;
-    }
+        i {
+            margin: 5px 20px;
+            font-size: 30px;
+        }
 
-    &:hover {
-        background-color: $primary_color;
-        color: white;
+        &:hover {
+            background-color: $primary_color;
+            color: white;
+        }
     }
-}
 }
 </style>

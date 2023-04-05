@@ -8,7 +8,6 @@ export default {
 }
 </script>
 <template lang="">
-
     <div class="container px-0 text-center">
         <div class="row">
             <div class="col">
