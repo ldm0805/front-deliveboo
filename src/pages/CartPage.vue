@@ -54,10 +54,10 @@ export default {
 </script>
 <!-- ciao -->
 <template lang="">
-<div class="d-flex justify-content-between">
-    <div>
-        <div>
-            <ul>
+<div :class="(this.myData.length) ? 'd-flex justify-content-between' : 'd-flex justify-content-center align-items-center alternative'">
+    <div class="w-100">
+        <div class="w-100">
+            <ul class="d-flex flex-wrap">
                 <li v-for="plate in this.myData">
                     <div class="card" style="width:18rem;">
                         <img class="card-img-top"
@@ -71,19 +71,119 @@ export default {
                     </div>
                     </div>
                 </li>
-                Totale ordine: {{ totalPrice }} &euro;
             </ul>
         </div>
-            <div class="mb-4">
-                <button class="btn btn-sm btn-success" @click="myCheck">Procedi con il tuo ordine</button>
-                <button class="btn btn-warning" @click="svuota">cestino</button>
+        <div v-if="this.myData.length" class="text-center">
+           <span class="total">Totale ordine: <span class="number">{{ totalPrice }}</span> &euro;</span>
+            <div class="mb-4 mt-4 primary">
+                <button class="pay mx-4" @click="myCheck">Procedi con il tuo ordine</button>
+                <button class="close mx-4" @click="svuota">Svuota il carrello</button>
             </div>
+        </div>
+        <div v-else class="second-view text-center">
+            <p class="mb-5">Il tuo carrello è vuoto! <i class="fa-regular fa-face-sad-tear"></i> <br> Fatti venire fame!</p>
+            <router-link :to="{ name: 'RestaurateurPage' }" class="nav-link">
+                <button>
+                    <i class="fa-solid fa-utensils"></i>Scopri di cosa hai voglia<i class="fa-solid fa-utensils"></i>
+                </button>
+            </router-link>
+        </div>
     </div>
 </div>
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/partials/variables' as *;
 li {
     list-style-type: none;
+    margin: 20px 30px;
+    img{
+        height: 280px;
+        object-fit: cover;
+    }
+}
+.card{
+    transition: all 0.25s;
+}
+.card:hover{
+    scale: 1.05;
+    box-shadow: 0px 0px 10px$primary_color;
+}
+.total{
+    font-weight: bold;
+    font-size: 25px;
+    color: rgb(78, 78, 78);
+    .number{
+        color: $primary_color;
+    }
+}
+
+.alternative{
+    height: 70vh;
+}
+.primary{
+        button{
+            background-color: transparent;
+            border: 3px solid;
+            border-radius: 10px;
+            padding: 5px 5px;
+            font-weight: bold;
+            transition: all 0.25s;
+        }
+        .pay{
+                color: $primary_color;
+                border-color: $primary_color;
+            }
+            .pay:hover {
+                background-color: $primary_color;
+                color: white;
+            }
+        .close{
+            color: rgb(78, 78, 78);
+            border-color: rgb(78, 78, 78);
+        }
+        .close:hover {
+                background-color: rgb(78, 78, 78);
+                color: $primary_color;
+            }
+    }
+.second-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{
+        font-weight: bold;
+        font-size: 30px;
+        color: rgb(78, 78, 78);
+
+        i{
+            color: $primary_color;
+            font-size: 40px;
+            position: relative;
+            top: 5px;
+        }
+    }
+
+    button {
+    background-color: transparent;
+    border: 3px solid $primary_color;
+    border-radius: 10px;
+    padding: 5px 5px;
+    color: $primary_color;
+    font-weight: bold;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+
+    i{
+        margin: 5px 20px;
+        font-size: 30px;
+    }
+
+    &:hover {
+        background-color: $primary_color;
+        color: white;
+    }
+}
 }
 </style>
