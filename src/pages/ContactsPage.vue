@@ -56,13 +56,15 @@ export default {
                     this.success = true;
                     this.loading = false;
                     setTimeout(() => {
+                        localStorage.clear();
+
                         this.$router.push({ 'name': 'thank-you' });
                     }, 2000)
                 }
             });
         }
     },
-    mounted(){
+    mounted() {
         const personalPlate = JSON.parse(localStorage.getItem(dataArray));
         if (personalPlate) {
             this.myData = personalPlate;
