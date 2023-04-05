@@ -4,10 +4,10 @@ import axios from 'axios';
 import Multiselect from '@vueform/multiselect'
 export default {
     name: 'AppMain',
-	components: {
-		Multiselect
-	},
-	data() {
+    components: {
+        Multiselect
+    },
+    data() {
         return {
             restaurateur: [],
             type: '',
@@ -42,7 +42,7 @@ export default {
             const slugify = store.inputText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
             this.store.searched = slugify
         },
-		searchMedia() {
+        searchMedia() {
             this.$emit('search')
         },
         getTypes(type_page) {
@@ -109,9 +109,10 @@ export default {
 	:close-on-select="false"
 	:searchable="true"
 	:create-option="true"
-	:options="options" @click="RestaurateursList" @keyup.enter="RestaurateursList" />
+	:options="options" 
+    @click="RestaurateursList" />
 </template>
 <style lang="scss"  src="@vueform/multiselect/themes/default.css">
-    @use '../styles/partials/variables' as *;
-    @use '../styles/partials/mixins' as *;
+@use '../styles/partials/variables' as *;
+@use '../styles/partials/mixins' as *;
 </style>
