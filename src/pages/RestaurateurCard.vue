@@ -36,6 +36,27 @@ export default {
                 piatti</router-link>
         </div>
     </div>
+    <div class="card" v-else-if="store.selectedType == ''">
+        <img class="card-img-top"
+            :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
+            alt="">
+
+        <div class="card-body">
+            <div class="card-title">
+                <h5>Ristorante: {{ restaurateur.name }}</h5>
+            </div>
+            <p class="card-text">Indirizzo: {{ restaurateur.address }}</p>
+            <div>
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                    <span>Tag: </span>
+                    <span v-for="(tag, index) in restaurateur.types" class="badge bg-info text-white text-uppercase"
+                        :key="index">{{ tag.name }}</span>
+                </div>
+            </div>
+            <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
+                piatti</router-link>
+        </div>
+    </div>
     <div class="card" v-else>
         <img class="card-img-top"
             :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'"
