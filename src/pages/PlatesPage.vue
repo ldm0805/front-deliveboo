@@ -106,6 +106,7 @@
             </div>
         </div>
     </div>
+    <!-- fine template -->
 
 </template>
 
