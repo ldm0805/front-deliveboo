@@ -1,8 +1,15 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
+import { Form, Field, ErrorMessage } from 'vee-validate';
+
 const dataArray = 'storage-key';
 export default {
+    components: {
+        Form,
+        Field,
+        ErrorMessage
+    },
     data() {
         return {
             name: '',
@@ -20,6 +27,54 @@ export default {
         }
     },
     methods: {
+        validateEmail(value) {
+            // if the field is empty
+            if (!value) {
+                return 'La mail è richiesta';
+            }
+            // if the field is not a valid email
+            const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+            if (!regex.test(value)) {
+                return 'Devi inserire una mail valida';
+            }
+            // All is good
+            return true;
+        },
+        validateRequest(value) {
+            // if the field is empty
+            if (!value) {
+                return 'Il campo è richiesto';
+            }
+            return true
+        },
+        validateNumeric(value) {
+            const numericRegex = /^[0-9]+$/;
+            if (!numericRegex.test(value)) {
+                return 'Il campo deve contenere solo numeri';
+            }
+            if (value.length > 15) {
+                return 'Il campo non può contenere più di 15 caratteri';
+            }
+            return true;
+        },
+        validateLength50(value) {
+            if (value.length > 50) {
+                return 'Il campo non può contenere più di 50 caratteri';
+            }
+            return true;
+        },
+        validateLength70(value) {
+            if (value.length > 70) {
+                return 'Il campo non può contenere più di 70 caratteri';
+            }
+            return true;
+        },
+        validateLength100(value) {
+            if (value.length > 100) {
+                return 'Il campo non può contenere più di 100 caratteri';
+            }
+            return true;
+        },
         addPrice(cart) {
             let total = 0;
             for (let i = 0; i < cart.length; i++) {
@@ -101,49 +156,42 @@ export default {
                 <div v-else>
                     <div class="mt-4 d-flex justify-content-center">
                         <div class="w-50">
-            <form @submit.prevent="sendForm">
+
+            <Form @submit="sendForm">
                 <div class="row">
                     <div>
                         <label class="control-label" for="nome">Nome:</label>
-                        <input type="text" class="form-control" name="name" id="name" v-model="name" placeholder="nome">
-                        <div v-for="(error, index) in errors.name" :key="`message-error-${index}`" class="text-danger">
-                            {{error}}
-                        </div>
+                        <Field type="text" class="form-control" name="name" id="name" v-model="name" placeholder="nome"  maxlength="50" :rules="[validateRequest, validateLength50]" />
+                        <ErrorMessage class="text-danger" name="name" />
                     </div>
                     <div>
                         <label class="control-label" for="cognome">Cognome:</label>
-                        <input type="text" class="form-control" name="surname" id="surname" v-model="surname" placeholder="cognome">
-                        <div v-for="(error, index) in errors.surname" :key="`message-error-${index}`" class="text-danger">
-                            {{error}}
-                        </div>
+                        <Field type="text"  class="form-control" name="surname" id="surname" v-model="surname" placeholder="cognome" maxlength="70" :rules="[validateRequest, validateLength70]"/>
+                        <ErrorMessage class="text-danger" name="surname" />
                 </div>
                 <div>
                     <label class="control-label" for="email">Email:</label>
-                    <input type="text" class="form-control" name="mail" id="mail" v-model="mail" placeholder="email">
-                    <div v-for="(error, index) in errors.mail" :key="`message-error-${index}`" class="text-danger">
-                        {{error}}
-                    </div>
+                    <Field type="email" class="form-control" name="mail" id="mail" v-model="mail" placeholder="email" :rules="validateEmail" />
+                    <ErrorMessage class="text-danger" name="mail" />
                 </div>
                 <div>
                     <label class="control-label" for="telefono">Telefono:</label>
-                    <input type="text" class="form-control" name="phone" id="phone" v-model="phone" placeholder="telefono">
-                    <div v-for="(error, index) in errors.phone" :key="`message-error-${index}`" class="text-danger">
-                        {{error}}
-                    </div>
+                    <Field type="text" class="form-control" name="phone" id="phone" v-model="phone" placeholder="telefono" maxlength="15" :rules="[validateRequest, validateNumeric]"/>
+                    <ErrorMessage class="text-danger" name="phone" />
                 </div>
                 <div>
                     <label class="control-label" for="indirizzo">Indirizzo:</label>
-                    <input type="text" class="form-control" name="address" id="address" v-model="address" placeholder="indirizzo">
-                    <div v-for="(error, index) in errors.address" :key="`message-error-${index}`" class="text-danger">
-                        {{error}}
-                    </div>
+                    <Field type="text" class="form-control" name="address" id="address" v-model="address" placeholder="indirizzo"  maxlength="100"  :rules="[validateRequest,   validateLength100]"/>
+                    <ErrorMessage class="text-danger" name="address" />
                 </div>
                 <div class="mt-4 text-center">
                     <div id="dropin-container"></div>
+                    <!-- <button type="submit" class="send_email">Invia</button> -->
                     <button type="submit" id="submit-button"  class="send_email">Invia</button>
+
                 </div>
             </div>
-        </form>
+        </Form>
     </div>
 </div>
 </div>

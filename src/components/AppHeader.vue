@@ -105,7 +105,7 @@ export default {
         <div class="container px-0 h-100">
             <nav class="d-flex align-items-center m-0 align-items-center h-100" data-bs-theme="light">
                 <div>
-                    <a class="navbar-brand fw-bold" href="#">
+                    <router-link :to="{ name: 'HomePage' }"  class="navbar-brand fw-bold">
                         <div class="d-flex align-items-center">
                             <div style="transform: scale(1);">
                                 <svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 369.91 83.9" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -125,7 +125,7 @@ export default {
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                         </div>
-                    </a>
+                    </router-link>
                 </div>
                 
                 <div class="w-100" id="navbarNav">
