@@ -1,22 +1,31 @@
 <script>
-import AppJumbotron from '../components/AppJumbotron.vue';
+import AppJumbotronWitouthSelect from "../components/AppJumbotronWitouthSelect.vue";
 export default {
-    name: "HomePage",
-    components: {
-        AppJumbotron
-    }
-}
+  name: "HomePage",
+  components: {
+    AppJumbotronWitouthSelect,
+  },
+};
 </script>
 <template lang="">
-
-    <div class="container px-0 text-center">
-        <div class="row">
-            <div class="col">
-                <h1>Hai Fame?</h1>
-                <router-link :to="{ name: 'RestaurateurPage' }" class="btn btn-outline-dark">Trova dei ristoranti</router-link>
-            </div>
-        </div>
+  <div class="container-fluid text-center">
+    <div class="row">
+      <div>
+        <AppJumbotronWitouthSelect class="jumbo"> </AppJumbotronWitouthSelect>
+      </div>
     </div>
-    
+  </div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+div {
+  padding: 0;
+
+  .container-fluid {
+    padding: 0;
+    .jumbo {
+      position: relative;
+      height: 100vh;
+    }
+  }
+}
+</style>
