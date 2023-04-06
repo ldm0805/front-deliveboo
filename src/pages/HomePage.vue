@@ -8,13 +8,7 @@ export default {
 };
 </script>
 <template lang="">
-  <div class="container-fluid text-center">
-    <div class="row">
-      <div>
-        <AppJumbotronWitouthSelect class="jumbo"> </AppJumbotronWitouthSelect>
-      </div>
-    </div>
-  </div>
+    <AppJumbotronWitouthSelect class="jumbo"> </AppJumbotronWitouthSelect>
 </template>
 <style lang="scss" scoped>
 div {
