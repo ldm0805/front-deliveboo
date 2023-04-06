@@ -11,6 +11,7 @@
                 myData: [],
                 loading: false,
                 plateSlug: [],
+                restaurateur:[],
             }
         },
         methods: {
@@ -51,11 +52,13 @@
                 if (response.data.success) {
                     if (window.localStorage.length == 0) {
                         this.plateSlug = response.data.plates;
+                        this.restaurateur = response.data.restaurateur;
                         this.loading = false;
                     }
                     else {
                         let myData = (JSON.parse(localStorage.getItem(dataArray)));
                         this.plateSlug = response.data.plates;
+                        this.restaurateur = response.data.restaurateur;
                         this.loading = false;
 
                         for (let i in myData) {
@@ -73,8 +76,7 @@
 <template lang="">
     <div class="wrapper">
         <h2 class="head-title">Explore Our Foods</h2>
-        <p class="head-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et dolore magna.</p>
+        <p class="head-text">{{ restaurateur.name }}</p>
         <div class="cards">
             <div v-for="plate in this.plateSlug" :key="plate.id">
                 <!-- <div class="card" v-show="!plate.visible ? `` : 'd-none'"> -->
@@ -105,12 +107,23 @@
                 </div>
             </div>
         </div>
+        <router-link :to="{ name: 'CartPage' }" class="nav-link">
+            <div class="cart-link">
+                <button class="mx-4 cart"><i class="fa-solid fa-cart-shopping"></i> Guarda il carrello <i class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+        </router-link>
     </div>
-    <!-- fine template -->
 
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/partials/variables' as *;
+.cart-link{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
     h2,
     h4 {
         color: var(--clr-head);
@@ -188,4 +201,25 @@
     .card__text {
         font-size: 1.4rem;
     }
+    .cart {
+    background-color: transparent;
+    border: 3px solid $primary_color;
+    border-radius: 10px;
+    padding: 5px 5px;
+    color: $primary_color;
+    font-weight: bold;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+
+    i{
+        margin: 5px 20px;
+        font-size: 25px;
+    }
+
+    &:hover {
+        background-color: $primary_color;
+        color: white;
+    }
+}
 </style>
