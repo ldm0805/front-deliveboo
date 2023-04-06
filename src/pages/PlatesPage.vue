@@ -50,7 +50,8 @@
         mounted() {
             axios.get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
                 if (response.data.success) {
-                    if (window.localStorage.length == 0) {
+                    console.log(window.localStorage.length)
+                    if (window.localStorage.length == 1) {
                         this.plateSlug = response.data.plates;
                         this.restaurateur = response.data.restaurateur;
                         this.loading = false;
