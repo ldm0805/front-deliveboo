@@ -20,7 +20,7 @@ export default {
 <template lang="">
   <div class="container-fluid">
     <section
-      class="jumbotron d-flex align-items-center justify-content-center my-text-light flex-column"
+      class="jumbotron d-flex align-items-center justify-content-center my-text-light flex-column py-4"
     >
       <div class="description w-75">
         <h1>Hai Fame?</h1>
@@ -47,7 +47,22 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../styles/partials/variables" as *;
-.jumbotron {
+@media screen and (max-width: 900px) {
+  .jumbotron {
+  height: 100%;
+  // background-image: url('../assets/img/food-table-1.jpg');
+  background-size: cover;
+  background-image: linear-gradient(
+      180deg,
+      rgba($color: $dark_color, $alpha: 0.7),
+      rgba($color: $dark_color, $alpha: 0.7)
+    ),
+    url("../assets/img/food-table-1.jpg");
+  }
+}
+
+@media screen and (min-width: 901px) {
+  .jumbotron {
   height: 100vh;
   // background-image: url('../assets/img/food-table-1.jpg');
   background-size: cover;
@@ -57,7 +72,9 @@ export default {
       rgba($color: $dark_color, $alpha: 0.7)
     ),
     url("../assets/img/food-table-1.jpg");
+  }
 }
+
 p {
   font-size: 1.5em;
 }
