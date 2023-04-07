@@ -1,20 +1,21 @@
 <script>
-import { store } from '../store'
+import { store } from "../store";
 
 export default {
-    props: {
-        restaurateur: Object,
-    },
-    data() {
-        return {
-            restaurateurs: null,
-            store,
-        }
-    },
-}
+  props: {
+    restaurateur: Object,
+  },
+  data() {
+    return {
+      restaurateurs: null,
+      store,
+    };
+  },
+};
 </script>
 <!-- Ciao sono un -->
 <template>
+
     <div class="card" v-if="store.selectedType == null">
         <img class="card__image" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
         <div class="card__content">
@@ -30,7 +31,14 @@ export default {
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai piatti</router-link>
+
         </div>
+      </div>
+      <router-link
+        :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
+        class="pb-orange"
+        >Vai ai piatti</router-link
+      >
     </div>
     <div class="card" v-else-if="store.selectedType == ''">
         <img class="card__image" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
@@ -47,7 +55,14 @@ export default {
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai piatti</router-link>
+
         </div>
+      </div>
+      <router-link
+        :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
+        class="button"
+        >Vai ai piatti</router-link
+      >
     </div>
     <div class="card" v-else>
         <img class="card__image" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
@@ -65,15 +80,23 @@ export default {
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
                 piatti</router-link>
+
         </div>
+      </div>
+      <router-link
+        :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
+        class="pb-orange"
+        >Vai ai piatti</router-link
+      >
     </div>
+  </div>
 </template>
 
-
 <style lang="scss" scoped>
-@use '../styles/partials/variables' as *;
+@use "../styles/partials/variables" as *;
 
 .button {
+
     background-color: $primary_color;
     padding: .5em 1em;
     margin: .5em 0em;

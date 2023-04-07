@@ -142,7 +142,7 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="row py-5">
+        <div class="row py-5" v-if="this.store.myData.length != 0">
             <div class="col-12 d-flex justify-content-center">
                 <nav>
                     <ul class="pagination">
