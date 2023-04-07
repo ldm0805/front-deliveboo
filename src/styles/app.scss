@@ -65,3 +65,40 @@ h6 {
 a {
 	text-decoration: none;
 }
+
+
+.pb-white{
+	text-decoration: none;
+	color: $primary_color;
+	background-color: $light_color;
+	padding: .8em 1.5em;
+	font-weight: bold;
+
+	outline: 3px solid $primary_color;
+	transition: all 0.25s ;
+	&:hover{
+		color:$light_color;
+		background-color: $primary_color;
+		outline: 3px solid $primary_color;
+
+}
+}
+
+.pb-orange{
+	
+	text-decoration: none;
+	color: $light_color;
+	background-color: $primary_color;
+	padding: .8em 1.5em;
+	outline: 3px solid $primary_color;
+	transition: all 0.25s ;
+	margin: 1em 0em;
+	font-weight: bold;
+
+	display: inline-block;
+	&:hover{
+		color:$primary_color;
+		background-color: $light_color ;
+		outline: 3px solid $primary_color;
+}
+}

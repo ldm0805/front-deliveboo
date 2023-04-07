@@ -119,7 +119,7 @@ export default {
     </div>
     <router-link :to="{ name: 'CartPage' }" class="nav-link">
       <div class="cart-link">
-        <button class="mx-4 cart">
+        <button class="pb-orange cart">
           <i class="fa-solid fa-cart-shopping"></i> Guarda il carrello
           <i class="fa-solid fa-cart-shopping"></i>
         </button>
@@ -217,7 +217,6 @@ h2 {
 .cart {
   background-color: transparent;
   border: 3px solid $primary_color;
-  border-radius: 10px;
   padding: 5px 5px;
   color: $primary_color;
   font-weight: bold;

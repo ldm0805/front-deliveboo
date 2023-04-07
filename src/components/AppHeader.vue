@@ -106,7 +106,7 @@ export default {
 <template lang="">
   <header class="my-bg-primary my-text-light">
     <div class="container px-0">
-      <nav class="navbar navbar-expand-lg navbar-light mx-2">
+      <nav class="navbar navbar-expand-lg navbar-dark mx-2">
         <router-link :to="{ name: 'HomePage' }" class="navbar-brand fw-bold">
           <div class="d-flex align-items-center">
             <div style="transform: scale(1)">
@@ -152,19 +152,35 @@ export default {
             </div>
           </div>
         </router-link>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end"  id="navbarNavAltMarkup">
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNavAltMarkup"
+        >
           <ul class="navbar-nav mr-auto">
-            <li v-for="(item, index) in menuItems"
-              :key="index">
-              <router-link :to="{ name: item.routeName }" class="text-white nav-item nav-link">
+            <li v-for="(item, index) in menuItems" :key="index">
+              <router-link
+                :to="{ name: item.routeName }"
+                class="text-white nav-item nav-link"
+              >
                 {{ item.label }}
               </router-link>
             </li>
             <li>
-              <router-link :to="{ name: 'CartPage' }" class="text-white nav-item nav-link">
+              <router-link
+                :to="{ name: 'CartPage' }"
+                class="text-white nav-item nav-link"
+              >
                 <i class="fa-solid fa-cart-shopping"></i>
               </router-link>
             </li>
@@ -178,8 +194,7 @@ export default {
 <style lang="scss" scoped>
 @use "../styles/partials/variables" as *;
 
-.z_index{
+.z_index {
   z-index: 99;
 }
-
 </style>
