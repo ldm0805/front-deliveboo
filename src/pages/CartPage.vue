@@ -110,7 +110,7 @@ export default {
               <i class="fa-regular fa-face-sad-tear"></i> <br />
               Fatti venire fame!
             </p>
-            <router-link :to="{ name: 'RestaurateurPage' }" class="pb-white">
+            <router-link :to="{ name: 'RestaurateurPage' }" class="nav-link">
               <button>
                 <i class="fa-solid fa-utensils"></i>Scopri di cosa hai voglia<i
                   class="fa-solid fa-utensils"
