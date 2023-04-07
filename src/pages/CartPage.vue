@@ -55,11 +55,11 @@ export default {
 <!-- ciao -->
 <template lang="">
 <div class="container">
-    <div :class="(this.myData.length) ? ' row d-flex justify-content-between' : 'd-flex justify-content-center align-items-center alternative'">
+    <div :class="(this.myData.length) ? ' row d-flex justify-content-between' : 'd-flex align-items-center alternative'">
         <div class="col-12">
             <div class="row">                
-                <div class="col-4" v-for="plate in this.myData">
-                    <ul class="d-flex flex-wrap justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-4" v-for="plate in this.myData">
+                    <ul class="d-flex flex-wrap list-unstyled justify-content-center">
                         <li>
                             <div class="card" style="width:18rem;">
                                 <img class="card-img-top"
@@ -75,14 +75,14 @@ export default {
                         </li>
                     </ul>
                 </div>
-                <div v-if="this.myData.length" class="text-center">
+                <div v-if="this.myData.length" class="col-sm-12 text-center d-block">
                    <span class="total">Totale ordine: <span class="number">{{ totalPrice }}</span> &euro;</span>
                     <div class="mb-4 mt-4 primary">
                         <button class="pay mx-4" @click="myCheck">Procedi con il tuo ordine</button>
                         <button class="close mx-4" @click="svuota">Svuota il carrello</button>
                     </div>
                 </div>
-                <div v-else class="second-view text-center">
+                <div v-else class="second-view col-sm-12 col-md-4 text-center">
                     <p class="mb-5">Il tuo carrello è vuoto! <i class="fa-regular fa-face-sad-tear"></i> <br> Fatti venire fame!</p>
                     <router-link :to="{ name: 'RestaurateurPage' }" class="nav-link">
                         <button>
