@@ -31,15 +31,9 @@ export default {
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai piatti</router-link>
-
         </div>
-      </div>
-      <router-link
-        :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
-        class="pb-orange"
-        >Vai ai piatti</router-link
-      >
     </div>
+
     <div class="card" v-else-if="store.selectedType == ''">
         <img class="card__image" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
         <div class="card__content">
@@ -55,15 +49,9 @@ export default {
                 </div>
             </div>
             <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai piatti</router-link>
-
         </div>
-      </div>
-      <router-link
-        :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
-        class="button"
-        >Vai ai piatti</router-link
-      >
     </div>
+
     <div class="card" v-else>
         <img class="card__image" :src="restaurateur.image != null ? `${this.store.baseUrl}/storage/${restaurateur.image}` : 'https://picsum.photos/200/300'" alt="">
         <div class="card__content">
@@ -78,18 +66,9 @@ export default {
                         :key="index">{{ tag }}</span>
                 </div>
             </div>
-            <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai
-                piatti</router-link>
-
+            <router-link :to="{ name: 'Plates', params: { slug: restaurateur.slug } }" class="button">Vai ai piatti</router-link>
         </div>
-      </div>
-      <router-link
-        :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
-        class="pb-orange"
-        >Vai ai piatti</router-link
-      >
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
