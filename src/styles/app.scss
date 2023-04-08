@@ -9,6 +9,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	// border: solid 1px black;
 }
 
 body {
@@ -101,4 +102,12 @@ a {
 		background-color: $light_color ;
 		outline: 3px solid $primary_color;
 }
+}
+
+.card-title{
+	height: 30%;
+}
+
+.card-text{
+	height: 20%;
 }
