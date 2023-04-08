@@ -98,7 +98,7 @@ export default {
               </button>
             </div>
           </div>
-          <div v-else class="second-view col-sm-12 col-md-4 text-center">
+          <div v-else class="second-view col-12 text-center">
             <p class="mb-5">
               Il tuo carrello è vuoto!
               <i class="fa-regular fa-face-sad-tear"></i> <br />
