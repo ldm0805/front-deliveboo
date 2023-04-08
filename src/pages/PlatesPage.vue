@@ -96,8 +96,8 @@ export default {
           <div class="card__content">
             <div class="card__header">
               <h4 class="card__title">{{ plate.name }}</h4>
-              <span class="card__price">&euro; {{ plate.price }}</span>
             </div>
+            <h4 class="card__price">&euro; {{ plate.price }}</h4>
             <h4 class="card__title">Ingredienti:</h4>
             <p class="card__text">{{ plate.ingredients }}</p>
             <h4 class="card__title">Descrizione:</h4>
