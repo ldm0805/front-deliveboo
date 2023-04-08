@@ -4,6 +4,7 @@ import { store } from "../store";
 const dataArray = "storage-key";
 
 export default {
+  components: {},
   data() {
     return {
       store,
@@ -82,14 +83,16 @@ export default {
       <div v-for="plate in this.plateSlug" :key="plate.id">
         <!-- <div class="card" v-show="!plate.visible ? `` : 'd-none'"> -->
         <div class="card">
-          <img
-            :src="
-              plate.image != null
-                ? `${this.store.baseUrl}/storage/${plate.image}`
-                : 'https://picsum.photos/200/300'
-            "
-            alt=""
-          />
+          <div class="card__image">
+            <img
+              :src="
+                plate.image != null
+                  ? `${this.store.baseUrl}/storage/${plate.image}`
+                  : 'https://picsum.photos/200/300'
+              "
+              alt=""
+            />
+          </div>
           <div class="card__content">
             <div class="card__header">
               <h4 class="card__title">{{ plate.name }}</h4>
@@ -168,11 +171,24 @@ h2 {
   width: 1100px;
   margin-top: 6em;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 6rem;
+  grid-template-columns: repeat(3, 1.5fr);
+  grid-gap: 2rem;
+}
+
+@media (max-width: 991px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .card {
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 13px;
@@ -188,13 +204,20 @@ h2 {
 }
 
 .card__image {
+  height: 200px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 .card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 2em 1.4em;
   background-color: #fff;
 }
@@ -233,5 +256,11 @@ h2 {
     background-color: $primary_color;
     color: white;
   }
+}
+.card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
 }
 </style>
