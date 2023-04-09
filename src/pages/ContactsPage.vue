@@ -172,74 +172,77 @@ export default {
         <Form @submit="sendForm">
           <div class="row">
             <div>
-              <label class="control-label" for="nome">Nome:</label>
+              <label class="control-label" for="nome">Nome*</label>
               <Field
                 type="text"
                 class="form-control"
                 name="name"
                 id="name"
                 v-model="name"
-                placeholder="nome"
+                placeholder="Nome"
                 maxlength="50"
                 :rules="[validateRequest, validateLength50]"
               />
               <ErrorMessage class="text-danger" name="name" />
             </div>
             <div>
-              <label class="control-label" for="cognome">Cognome:</label>
+              <label class="control-label" for="cognome">Cognome*</label>
               <Field
                 type="text"
                 class="form-control"
                 name="surname"
                 id="surname"
                 v-model="surname"
-                placeholder="cognome"
+                placeholder="Cognome"
                 maxlength="70"
                 :rules="[validateRequest, validateLength70]"
               />
               <ErrorMessage class="text-danger" name="surname" />
             </div>
             <div>
-              <label class="control-label" for="email">Email:</label>
+              <label class="control-label" for="email">Email*</label>
               <Field
                 type="email"
                 class="form-control"
                 name="mail"
                 id="mail"
                 v-model="mail"
-                placeholder="email"
+                placeholder="Email"
                 :rules="validateEmail"
               />
               <ErrorMessage class="text-danger" name="mail" />
             </div>
             <div>
-              <label class="control-label" for="telefono">Telefono:</label>
+              <label class="control-label" for="telefono">Telefono*</label>
               <Field
                 type="text"
                 class="form-control"
                 name="phone"
                 id="phone"
                 v-model="phone"
-                placeholder="telefono"
+                placeholder="Telefono"
                 maxlength="15"
                 :rules="[validateRequest, validateNumeric]"
               />
               <ErrorMessage class="text-danger" name="phone" />
             </div>
             <div>
-              <label class="control-label" for="indirizzo">Indirizzo:</label>
+              <label class="control-label" for="indirizzo">Indirizzo*</label>
               <Field
                 type="text"
                 class="form-control"
                 name="address"
                 id="address"
                 v-model="address"
-                placeholder="indirizzo"
+                placeholder="Indirizzo"
                 maxlength="100"
                 :rules="[validateRequest, validateLength100]"
               />
               <ErrorMessage class="text-danger" name="address" />
             </div>
+          </div>
+          <div class="d-flex justify-content-end mt-3">
+            I dati contrassegnati con * sono obbligatori.
           </div>
           <div class="mt-4 text-center">
             <div id="dropin-container"></div>
