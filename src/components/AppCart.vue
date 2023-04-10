@@ -136,7 +136,7 @@ export default {
 					</ul>
 				</div>
 				<div class="d-flex justify-content-center pb-white" @click="myCheck">
-					{{ totalPrice }} &euro; PAGAMI
+					{{ totalPrice }} &euro; Conferma Ordine
 				</div>
 				
 			</div>
