@@ -3,16 +3,13 @@ import axios from 'axios';
 import { store } from '../store';
 import RestaurateurCard from './RestaurateurCard.vue';
 import AppJumbotron from '../components/AppJumbotron.vue';
-import AppCart from '../components/AppCart.vue';
-
 
 export default {
     name: "RestaurateurPage",
 
     components: {
         RestaurateurCard,
-        AppJumbotron,
-        AppCart 
+        AppJumbotron
     },
 
     data() {
@@ -53,12 +50,10 @@ export default {
 </script>
 
 <template lang="">
-    <AppCart />
     <AppJumbotron />
     <div class="container" v-if="this.store.selectedType == null">
         <div class="row">
-            <div class="parent"> 
-                <h1 class="text-center py-4 m-0">Ristoranti</h1>               
+            <div class="parent">                
                 <div class="d-flex justify-content-center " v-if="loading">
                     <div class="">
                         <div class="contain-svg mt-5 loading">
@@ -79,7 +74,7 @@ export default {
                     </div> 
                 </div>
                 <div v-else class="row-grid">
-                    <div v-for="restaurateur in restaurateur"  class="mb-3" :key="restaurateur.id">
+                    <div v-for="restaurateur in restaurateur"  class="my-3" :key="restaurateur.id">
                         <RestaurateurCard :restaurateur="restaurateur"/>                            
                     </div>                     
                 </div>
