@@ -103,7 +103,7 @@ export default {
 </script>
 <template lang="">
     <!-- Select -->
-	<Multiselect class="mx-3"
+	<Multiselect
 	v-model="store.selectedType"
 	mode="tags"
 	:close-on-select="false"
