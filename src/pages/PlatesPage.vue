@@ -71,32 +71,11 @@ export default {
 
             }
 
-        },
-        mounted() {
-            axios.get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
-                if (response.data.success) {
-                    console.log(window.localStorage.length)
-                    if (window.localStorage.length == 1) {
-                        this.plateSlug = response.data.plates;
-                        this.restaurateur = response.data.restaurateur;
-                        this.loading = false;
-                    }
-                    else {
-                        let myData = (JSON.parse(localStorage.getItem(dataArray)));
-                        this.plateSlug = response.data.plates;
-                        this.restaurateur = response.data.restaurateur;
-                        this.loading = false;
-
-                        for (let i in myData) {
-                            if (myData[i].restaurateur_id == this.plateSlug[i]['restaurateur_id']) {
-                                this.plateSlug = myData;
-                            }
-                        }
-                    }
-                }
-            })
+          }
         }
-    }
+      });
+  }
+}
 </script>
 
 <template lang="">
@@ -143,12 +122,14 @@ export default {
             </div>
           </div>
         </div>
-        <router-link :to="{ name: 'CartPage' }" class="nav-link">
-            <div class="cart-link">
-                <button class="mx-4 cart"><i class="fa-solid fa-cart-shopping"></i> Guarda il carrello <i class="fa-solid fa-cart-shopping"></i></button>
-            </div>
-        </router-link>
+      </div>
     </div>
+    <router-link :to="{ name: 'CartPage' }" class="nav-link">
+        <div class="cart-link">
+            <button class="mx-4 cart"><i class="fa-solid fa-cart-shopping"></i> Guarda il carrello <i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+    </router-link>
+  </div>
 
 </template>
 
