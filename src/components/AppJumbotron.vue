@@ -19,7 +19,7 @@
 </script>
 <template lang="">
 	<section class="jumbotron d-flex align-items-center justify-content-center my-text-light flex-column">
-	<div class="w-75 text-center animate__animated animate__fadeInDownBig">
+	<div class="w-25 text-center animate__animated animate__fadeInDownBig">
 		<h1>Sì che hai fame</h1>
 		<AppSelect />
 	</div>
