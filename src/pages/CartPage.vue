@@ -90,10 +90,10 @@ export default {
               <span class="number">{{ totalPrice }}</span> &euro;</span
             >
             <div class="mb-4 mt-4 primary">
-              <button class="pay mx-4" @click="myCheck">
+              <button class="pay pb-white mx-4" @click="myCheck">
                 Procedi con il tuo ordine
               </button>
-              <button class="close mx-4" @click="svuota">
+              <button class="close pb-dark mx-4" @click="svuota">
                 Svuota il carrello
               </button>
             </div>
