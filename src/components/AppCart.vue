@@ -135,7 +135,7 @@ export default {
 						</li>
 					</ul>
 				</div>
-				<div class="d-flex justify-content-center btn my-bg-primary text-white" @click="myCheck">
+				<div class="d-flex justify-content-center pb-white" @click="myCheck">
 					{{ totalPrice }} &euro; PAGAMI
 				</div>
 				

@@ -71,18 +71,35 @@ a {
 .pb-white{
 	text-decoration: none;
 	color: $primary_color;
-	background-color: $light_color;
+	background-color: #ffffff;
 	padding: .8em 1.5em;
 	font-weight: bold;
-
 	outline: 3px solid $primary_color;
 	transition: all 0.25s ;
+	border-radius: 10px;
 	&:hover{
 		color:$light_color;
 		background-color: $primary_color;
 		outline: 3px solid $primary_color;
 
+	}
 }
+
+.pb-dark{
+	text-decoration: none;
+	color: rgb(78, 78, 78);;
+	background-color: #ffffff;
+	padding: .8em 1.5em;
+	font-weight: bold;
+	outline: 3px solid rgb(78, 78, 78);;
+	transition: all 0.25s ;
+	border-radius: 10px;
+	&:hover{
+		color:$light_color;
+		background-color: rgb(78, 78, 78);;
+		outline: 3px solid rgb(78, 78, 78);;
+
+	}
 }
 
 .pb-orange{
@@ -95,8 +112,8 @@ a {
 	transition: all 0.25s ;
 	margin: 1em 0em;
 	font-weight: bold;
-
 	display: inline-block;
+	border-radius: 10px;
 	&:hover{
 		color:$primary_color;
 		background-color: #ffffff ;
