@@ -9,6 +9,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	// border: solid 1px black;
 }
 
 body {
@@ -87,7 +88,7 @@ a {
 .pb-orange{
 	
 	text-decoration: none;
-	color: $light_color;
+	color: #ffffff;
 	background-color: $primary_color;
 	padding: .8em 1.5em;
 	outline: 3px solid $primary_color;
@@ -98,7 +99,15 @@ a {
 	display: inline-block;
 	&:hover{
 		color:$primary_color;
-		background-color: $light_color ;
+		background-color: #ffffff ;
 		outline: 3px solid $primary_color;
 }
+}
+
+.card-title{
+	height: 30%;
+}
+
+.card-text{
+	height: 20%;
 }

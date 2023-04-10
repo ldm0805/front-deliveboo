@@ -1,49 +1,74 @@
 <script>
-    import axios from 'axios';
-    import { store } from '../store';
-    const dataArray = 'storage-key';
 
+import axios from "axios";
+import { store } from "../store";
+const dataArray = "storage-key";
 
-    export default {
-        data() {
-            return {
-                store,
-                myData: [],
-                loading: false,
-                plateSlug: [],
-                restaurateur:[],
-            }
-        },
-        methods: {
-            addQuantity(plate) {
-                if (store.myData.includes(plate)) {
-                    plate.quantity++;
-                } else {
-                    plate.quantity++;
-                    const index = store.myData.findIndex((el) => el === plate);
-                    if (index !== -1) {
-                        plate.quantity = store.myData[index].quantity;
-                    }
-                    store.myData.push(plate);
-                }
-                localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
-            },
+export default {
+  components: {},
+  data() {
+    return {
+      store,
+      myData: [],
+      loading: false,
+      plateSlug: [],
+      restaurateur: [],
+    };
+  },
+  methods: {
+    addQuantity(plate) {
+      if (store.myData.includes(plate)) {
+        plate.quantity++;
+      } else {
+        plate.quantity++;
+        const index = store.myData.findIndex((el) => el === plate);
+        if (index !== -1) {
+          plate.quantity = store.myData[index].quantity;
+        }
+        store.myData.push(plate);
+      }
+      localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+    },
 
-            decreaseQuantity(plate) {
-                if (plate.quantity > 0) {
-                    if (store.myData.includes(plate)) {
-                        plate.quantity--;
-                    } else {
-                        plate.quantity--;
-                        const index = store.myData.findIndex((el) => el === plate);
-                        if (index !== -1) {
-                            plate.quantity = store.myData[index].quantity;
-                        }
-                        store.myData.push(plate);
-                    }
-                    localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+    decreaseQuantity(plate) {
+      if (plate.quantity > 0) {
+        if (store.myData.includes(plate)) {
+          plate.quantity--;
+        } else {
+          plate.quantity--;
+          const index = store.myData.findIndex((el) => el === plate);
+          if (index !== -1) {
+            plate.quantity = store.myData[index].quantity;
+          }
+          store.myData.push(plate);
+        }
+        localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+      }
+    },
+  },
+  mounted() {
+    axios
+      .get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`)
+      .then((response) => {
+        if (response.data.success) {
+          if (window.localStorage.length == 0) {
+            this.plateSlug = response.data.plates;
+            this.restaurateur = response.data.restaurateur;
+            this.loading = false;
+          } else {
+            let myData = JSON.parse(localStorage.getItem(dataArray));
+            this.plateSlug = response.data.plates;
+            this.restaurateur = response.data.restaurateur;
+            this.loading = false;
 
-                }
+            for (let i in myData) {
+              if (
+                myData[i].restaurateur_id ==
+                this.plateSlug[i]["restaurateur_id"]
+              ) {
+                this.plateSlug = myData;
+              }
+
             }
 
         },
@@ -75,38 +100,48 @@
 </script>
 
 <template lang="">
-    <div class="wrapper">
-        <h1 class="head-text text-center">{{ restaurateur.name }}</h1>
-        <h2 class="head-title">Explore Our Foods</h2>
-        <div class="cards">
-            <div v-for="plate in this.plateSlug" :key="plate.id">
-                <!-- <div class="card" v-show="!plate.visible ? `` : 'd-none'"> -->
-                <div class="card">
-                    <img :src="plate.image != null ? `${this.store.baseUrl}/storage/${plate.image}` : 'https://picsum.photos/200/300'"
-                        alt="">
-                    <div class="card__content">
-                        <div class="card__header">
-                            <h4 class="card__title">{{ plate.name }}</h4>
-                            <span class="card__price">&euro; {{ plate.price }}</span>
-                        </div>
-                        <h4 class="card__title">Ingredienti:</h4>
-                        <p class="card__text">{{ plate.ingredients }}</p>
-                        <h4 class="card__title">Descrizione:</h4>
 
-                        <p class="card__text">{{ plate.description }}</p>
-
-                        <div v-show="!plate.availability">
-                            <span class="text-danger">Piatto non disponibile</span>
-                        </div>
-                        <div v-show="plate.availability">
-                            <button class="btn" @click="decreaseQuantity(plate)"><i
-                                    class="fa-solid fa-minus"></i></button>
-                            <span>{{ plate.quantity }}</span>
-                            <button class="btn" @click="addQuantity(plate)"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
+  <div class="wrapper">
+    <h1 class="text-center">Menù</h1>
+    <h2 class="head-title">{{ restaurateur.name }}</h2>
+    <div class="cards">
+      <div v-for="plate in this.plateSlug" :key="plate.id">
+        <!-- <div class="card" v-show="!plate.visible ? `` : 'd-none'"> -->
+        <div class="card">
+          <div class="card__image">
+            <img
+              :src="
+                plate.image != null
+                  ? `${this.store.baseUrl}/storage/${plate.image}`
+                  : 'https://picsum.photos/200/300'
+              "
+              alt=""
+            />
+          </div>
+          <div class="card__content">
+            <div class="card__header">
+              <h4 class="card__title">{{ plate.name }}</h4>
             </div>
+            <h4 class="card__price">&euro; {{ plate.price }}</h4>
+            <h4 class="card__title">Ingredienti:</h4>
+            <p class="card__text">{{ plate.ingredients }}</p>
+            <h4 class="card__title">Descrizione:</h4>
+
+            <p class="card__text">{{ plate.description }}</p>
+
+            <div v-show="!plate.availability">
+              <span class="text-danger">Piatto non disponibile</span>
+            </div>
+            <div v-show="plate.availability">
+              <button class="btn" @click="decreaseQuantity(plate)">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <span>{{ plate.quantity }}</span>
+              <button class="btn" @click="addQuantity(plate)">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
         </div>
         <router-link :to="{ name: 'CartPage' }" class="nav-link">
             <div class="cart-link">
@@ -222,5 +257,110 @@
         background-color: $primary_color;
         color: white;
     }
+}
+
+
+.head-text {
+  max-width: 520px;
+  margin: auto;
+  margin-top: 0.5em;
+}
+
+.cards {
+  max-width: 100%;
+  width: 1100px;
+  margin-top: 6em;
+  display: grid;
+  grid-template-columns: repeat(3, 1.5fr);
+  grid-gap: 2rem;
+}
+
+@media (max-width: 991px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 13px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 15px 50px 0 rgba(0, 0, 0, 0.09);
+}
+
+.card__image {
+  height: 200px;
+  width: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2em 1.4em;
+  background-color: #fff;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.card__price {
+  font-size: 2.5rem;
+  color: var(--clr-accent);
+}
+
+.card__text {
+  font-size: 1.4rem;
+}
+.cart {
+  background-color: transparent;
+  border: 3px solid $primary_color;
+  padding: 5px 5px;
+  color: $primary_color;
+  font-weight: bold;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+
+  i {
+    margin: 5px 20px;
+    font-size: 25px;
+  }
+
+  &:hover {
+    background-color: $primary_color;
+    color: white;
+  }
+}
+.card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
 }
 </style>
