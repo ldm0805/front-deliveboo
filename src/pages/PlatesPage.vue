@@ -76,8 +76,8 @@
 
 <template lang="">
     <div class="wrapper">
+        <h1 class="head-text text-center">{{ restaurateur.name }}</h1>
         <h2 class="head-title">Explore Our Foods</h2>
-        <p class="head-text">{{ restaurateur.name }}</p>
         <div class="cards">
             <div v-for="plate in this.plateSlug" :key="plate.id">
                 <!-- <div class="card" v-show="!plate.visible ? `` : 'd-none'"> -->

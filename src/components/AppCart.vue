@@ -35,6 +35,37 @@ export default {
       localStorage.clear();
       location.reload();
     },
+
+	addQuantity(plate) {
+		if (store.myData.includes(plate)) {
+			plate.quantity++;
+		} else {
+			plate.quantity++;
+			const index = store.myData.findIndex((el) => el === plate);
+			if (index !== -1) {
+				plate.quantity = store.myData[index].quantity;
+			}
+			store.myData.push(plate);
+		}
+		localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+	},
+
+	decreaseQuantity(plate) {
+		if (plate.quantity > 0) {
+			if (store.myData.includes(plate)) {
+				plate.quantity--;
+			} else {
+				plate.quantity--;
+				const index = store.myData.findIndex((el) => el === plate);
+				if (index !== -1) {
+					plate.quantity = store.myData[index].quantity;
+				}
+				store.myData.push(plate);
+			}
+			localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+
+		}
+	}
   },
   mounted() {
     const personalPlate = JSON.parse(localStorage.getItem(dataArray));
@@ -47,6 +78,29 @@ export default {
       }
     }
     this.store.total = this.totalPrice;
+
+	axios.get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
+		if (response.data.success) {
+			console.log(window.localStorage.length)
+			if (window.localStorage.length == 1) {
+				this.plateSlug = response.data.plates;
+				this.restaurateur = response.data.restaurateur;
+				this.loading = false;
+			}
+			else {
+				let myData = (JSON.parse(localStorage.getItem(dataArray)));
+				this.plateSlug = response.data.plates;
+				this.restaurateur = response.data.restaurateur;
+				this.loading = false;
+
+				for (let i in myData) {
+					if (myData[i].restaurateur_id == this.plateSlug[i]['restaurateur_id']) {
+						this.plateSlug = myData;
+					}
+				}
+			}
+		}
+	})
   },
 };
 </script>
@@ -65,7 +119,10 @@ export default {
 						<div class="card" style="width: 18rem">
 							
 							<div class="card-body">
-								<div class="d-flex w-100 justify-content-between"><h5 class="card-title d-inline">{{ plate.name }}</h5> <div>{{ plate.quantity }}</div></div>
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="card-title d-inline">{{ plate.name }}</h5> 
+									<div>{{ plate.quantity }}</div>
+								</div>
 								
 								<h6 class="card-subtitle mb-2 text-muted">
 									{{ plate.price }} &euro;
