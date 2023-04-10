@@ -3,13 +3,15 @@ import axios from 'axios';
 import { store } from '../store';
 import RestaurateurCard from './RestaurateurCard.vue';
 import AppJumbotron from '../components/AppJumbotron.vue';
+import AppCart from '../components/AppCart.vue';
 
 export default {
     name: "RestaurateurPage",
 
     components: {
         RestaurateurCard,
-        AppJumbotron
+        AppJumbotron,
+        AppCart
     },
 
     data() {
@@ -50,6 +52,7 @@ export default {
 </script>
 
 <template lang="">
+    <AppCart />
     <AppJumbotron />
     <div class="container" v-if="this.store.selectedType == null">
         <div class="row">
