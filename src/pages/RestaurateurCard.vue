@@ -2,15 +2,16 @@
 import { store } from "../store";
 
 export default {
-  props: {
-    restaurateur: Object,
-  },
+    props: {
+        restaurateur: Object,
+    },
+    
   data() {
-    return {
-      restaurateurs: null,
-      store,
-    };
-  },
+        return {
+            restaurateurs: null,
+            store,
+        };
+    },
 };
 </script>
 <!-- Ciao sono un -->
