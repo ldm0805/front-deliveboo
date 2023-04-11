@@ -1,5 +1,6 @@
 <script>
 import AppJumbotronWitouthSelect from "../components/AppJumbotronWitouthSelect.vue";
+
 export default {
   name: "HomePage",
   components: {
@@ -8,7 +9,7 @@ export default {
 };
 </script>
 <template lang="">
-    <AppJumbotronWitouthSelect class="jumbo"> </AppJumbotronWitouthSelect>
+  <AppJumbotronWitouthSelect class="jumbo"> </AppJumbotronWitouthSelect>
 </template>
 <style lang="scss" scoped>
 div {

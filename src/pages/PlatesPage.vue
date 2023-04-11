@@ -81,9 +81,14 @@ export default {
     <h1 class="text-center">Menù</h1>
     <h2 class="head-title">{{ restaurateur.name }}</h2>
     <div class="cards">
-      <div v-for="plate in this.plateSlug" :key="plate.id">
+      <div
+        class="card"
+        v-show="!plate.visible ? `` : 'd-none'"
+        v-for="plate in this.plateSlug"
+        :key="plate.id"
+      >
         <!-- <div class="card" v-show="!plate.visible ? `` : 'd-none'"> -->
-        <div class="card">
+        <div class="">
           <div class="card__image">
             <img
               :src="
@@ -98,7 +103,7 @@ export default {
             <div class="card__header">
               <h4 class="card__title">{{ plate.name }}</h4>
             </div>
-            <h4 class="card__price">&euro; {{ plate.price }}</h4>
+            <h6 class="card__price">&euro; {{ plate.price }}</h6>
             <h4 class="card__title">Ingredienti:</h4>
             <p class="card__text">{{ plate.ingredients }}</p>
             <h4 class="card__title">Descrizione:</h4>
@@ -108,7 +113,10 @@ export default {
             <div v-show="!plate.availability">
               <span class="text-danger">Piatto non disponibile</span>
             </div>
-            <div v-show="plate.availability">
+            <div
+              class="d-flex align-items-center justify-content-end"
+              v-show="plate.availability"
+            >
               <button class="btn" @click="decreaseQuantity(plate)">
                 <i class="fa-solid fa-minus"></i>
               </button>
@@ -232,12 +240,12 @@ h2 {
 }
 
 .card__price {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   color: var(--clr-accent);
 }
 
 .card__text {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
 }
 .cart {
   background-color: transparent;
