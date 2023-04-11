@@ -1,10 +1,14 @@
 <script>
 import axios from "axios";
 import { store } from "../store";
+import AppCart from "../components/AppCart.vue";
+
 const dataArray = "storage-key";
 
 export default {
-  components: {},
+  components: {
+    AppCart,
+  },
   data() {
     return {
       store,
@@ -68,7 +72,6 @@ export default {
                 this.plateSlug = myData;
               }
             }
-
           }
         }
       });
@@ -77,6 +80,8 @@ export default {
 </script>
 
 <template lang="">
+  <AppCart class="z-3" />
+
   <div class="wrapper">
     <h1 class="text-center">Menù</h1>
     <h2 class="head-title">{{ restaurateur.name }}</h2>
@@ -138,7 +143,6 @@ export default {
       </div>
     </router-link>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
