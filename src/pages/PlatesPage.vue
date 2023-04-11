@@ -68,6 +68,7 @@ export default {
                 this.plateSlug = myData;
               }
             }
+
           }
         }
       });
@@ -137,6 +138,7 @@ export default {
       </div>
     </router-link>
   </div>
+
 </template>
 
 <style lang="scss" scoped>

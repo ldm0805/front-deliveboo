@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import ContactsPage from "./ContactsPage.vue";
+import ContactsPage from "../pages/ContactsPage.vue";
 
 import { store } from "../store";
 const dataArray = "storage-key";
@@ -35,6 +35,37 @@ export default {
       localStorage.clear();
       location.reload();
     },
+
+	addQuantity(plate) {
+		if (store.myData.includes(plate)) {
+			plate.quantity++;
+		} else {
+			plate.quantity++;
+			const index = store.myData.findIndex((el) => el === plate);
+			if (index !== -1) {
+				plate.quantity = store.myData[index].quantity;
+			}
+			store.myData.push(plate);
+		}
+		localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+	},
+
+	decreaseQuantity(plate) {
+		if (plate.quantity > 0) {
+			if (store.myData.includes(plate)) {
+				plate.quantity--;
+			} else {
+				plate.quantity--;
+				const index = store.myData.findIndex((el) => el === plate);
+				if (index !== -1) {
+					plate.quantity = store.myData[index].quantity;
+				}
+				store.myData.push(plate);
+			}
+			localStorage.setItem(dataArray, JSON.stringify(this.plateSlug));
+
+		}
+	}
   },
   mounted() {
     const personalPlate = JSON.parse(localStorage.getItem(dataArray));
@@ -47,17 +78,82 @@ export default {
       }
     }
     this.store.total = this.totalPrice;
+
+	axios.get(`${store.baseUrl}/api/restaurateurs/${this.$route.params.slug}`).then((response) => {
+		if (response.data.success) {
+			console.log(window.localStorage.length)
+			if (window.localStorage.length == 1) {
+				this.plateSlug = response.data.plates;
+				this.restaurateur = response.data.restaurateur;
+				this.loading = false;
+			}
+			else {
+				let myData = (JSON.parse(localStorage.getItem(dataArray)));
+				this.plateSlug = response.data.plates;
+				this.restaurateur = response.data.restaurateur;
+				this.loading = false;
+
+				for (let i in myData) {
+					if (myData[i].restaurateur_id == this.plateSlug[i]['restaurateur_id']) {
+						this.plateSlug = myData;
+					}
+				}
+			}
+		}
+	})
   },
 };
 </script>
 <!-- ciao -->
 <template lang="">
-  <div class="container">
-    <div :class="(this.myData.length) ? ' row d-flex justify-content-between' : 'd-flex align-items-center alternative'">
+
+	<div class="position-absolute vh-100 w-100">
+		<div class="position-fixed bottom-0 end-0 m-5 dropup">
+			<a href="#" class="floating-cart rounded-circle my-bg-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="fa-solid fa-cart-shopping"></i>
+			</a>
+			<div class="dropdown-menu mb-3">
+				<div class="" v-for="plate in this.myData">
+					<ul class="d-flex flex-wrap justify-content-center p-0">
+						<li>
+						<div class="card" style="width: 18rem">
+							
+							<div class="card-body">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="card-title d-inline">{{ plate.name }}</h5> 
+									<div>{{ plate.quantity }}</div>
+								</div>
+								
+								<h6 class="card-subtitle mb-2 text-muted">
+									{{ plate.price }} &euro;
+								</h6>
+								<p class="card-text">
+									<strong>Totale:</strong> {{ plate.quantity * plate.price }} &euro;
+								</p>
+							</div>
+						</div>
+						</li>
+					</ul>
+				</div>
+				<div class="d-flex justify-content-center pb-white" @click="myCheck">
+					{{ totalPrice }} &euro; Conferma Ordine
+				</div>
+				
+			</div>
+		</div>
+	</div>
+  <!-- <div class="container">
+    <div
+      :class="
+        this.myData.length
+          ? ' row d-flex justify-content-between'
+          : 'd-flex justify-content-center align-items-center alternative'
+      "
+    >
       <div class="col-12">
         <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-4" v-for="plate in this.myData">
-            <ul class="d-flex flex-wrap list-unstyled justify-content-center">
+          <div class="col-4" v-for="plate in this.myData">
+            <ul class="d-flex flex-wrap justify-content-center">
               <li>
                 <div class="card" style="width: 18rem">
                   <img
@@ -84,21 +180,21 @@ export default {
               </li>
             </ul>
           </div>
-          <div v-if="this.myData.length" class="col-sm-12 text-center d-block">
+          <div v-if="this.myData.length" class="text-center">
             <span class="total"
               >Totale ordine:
               <span class="number">{{ totalPrice }}</span> &euro;</span
             >
             <div class="mb-4 mt-4 primary">
-              <button class="pay pb-white mx-4" @click="myCheck">
+              <button class="pay mx-4" @click="myCheck">
                 Procedi con il tuo ordine
               </button>
-              <button class="close pb-dark mx-4" @click="svuota">
+              <button class="close mx-4" @click="svuota">
                 Svuota il carrello
               </button>
             </div>
           </div>
-          <div v-else class="second-view col-12 text-center">
+          <div v-else class="second-view text-center">
             <p class="mb-5">
               Il tuo carrello è vuoto!
               <i class="fa-regular fa-face-sad-tear"></i> <br />
@@ -115,18 +211,21 @@ export default {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss" scoped>
 @use "../styles/partials/variables" as *;
-li {
-  list-style-type: none;
-  margin: 20px 30px;
-  img {
-    height: 280px;
-    object-fit: cover;
-  }
+ul {
+	margin: 0;
+	li {
+	  list-style-type: none;
+	  margin-bottom: 20px;
+	  img {
+		height: 280px;
+		object-fit: cover;
+	  }
+	}
 }
 .card {
   transition: all 0.25s;
@@ -201,7 +300,6 @@ li {
 
     i {
       margin: 5px 20px;
-      font-size: 30px;
     }
 
     &:hover {
@@ -212,5 +310,28 @@ li {
   .pb-white {
     padding: 0;
   }
+}
+
+.floating-cart {
+	color: #ffffff;	
+	height: 60px;
+	width: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	z-index: 999999;
+}
+
+.dropdown-menu {
+	padding: 20px;
+}
+
+.my-bg-primary {
+	background-color: $primary_color;
+
+	&:hover {
+		background-color: $primary_color;
+	}
 }
 </style>
