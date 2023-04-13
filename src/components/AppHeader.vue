@@ -111,7 +111,7 @@ export default {
           <div class="d-flex align-items-center">
             <div style="transform: scale(1)">
               <svg
-                height="100%"
+                height="60%"
                 stroke-miterlimit="10"
                 style="
                   fill-rule: nonzero;
@@ -121,7 +121,7 @@ export default {
                 "
                 version="1.1"
                 viewBox="0 0 369.91 83.9"
-                width="100%"
+                width="60%"
                 xml:space="preserve"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink"

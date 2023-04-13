@@ -24,38 +24,67 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="contlist">
-              <ul class="d-flex gap-4 justify-content-center">
+            <div class="contlist d-flex gap-5 gap-md-2 justify-content-center">
+              <ul
+                class="d-flex gap-4 justify-content-center flex-md-row flex-column"
+              >
                 <li>
-                  <a class="github" href="https://github.com/Leo9723"
-                    ><i class="fa-brands fa-square-github"></i> Leo9723</a
-                  >
+                  <div class="d-flex flex-column flex-md-row gap-2">
+                    <i class="fa-brands fa-square-github"></i>
+                    <a
+                      class="github flex-column"
+                      href="https://github.com/Leo9723"
+                    >
+                      Leo9723</a
+                    >
+                  </div>
                 </li>
                 <li>
-                  <a class="github" href="https://github.com/Luigi213"
-                    ><i class="fa-brands fa-square-github"></i> Luigi213</a
-                  >
+                  <div class="d-flex flex-column flex-md-row gap-2">
+                    <i class="fa-brands fa-square-github"></i>
+                    <a class="github" href="https://github.com/Luigi213">
+                      Luigi213</a
+                    >
+                  </div>
                 </li>
                 <li>
-                  <a class="github" href="https://github.com/Fra-Battaglia"
-                    ><i class="fa-brands fa-square-github"></i> Fra-Battaglia</a
-                  >
+                  <div class="d-flex flex-column flex-md-row gap-2">
+                    <i class="fa-brands fa-square-github"></i>
+                    <a class="github" href="https://github.com/Fra-Battaglia">
+                      Fra-Battaglia</a
+                    >
+                  </div>
+                </li>
+              </ul>
+              <ul
+                class="d-flex gap-4 justify-content-center flex-md-row flex-column"
+              >
+                <li>
+                  <div class="d-flex flex-column flex-md-row gap-2">
+                    <i class="fa-brands fa-square-github"></i>
+                    <a class="github" href="https://github.com/ldm0805">
+                      ldm0805</a
+                    >
+                  </div>
                 </li>
                 <li>
-                  <a class="github" href="https://github.com/ldm0805"
-                    ><i class="fa-brands fa-square-github"></i> ldm0805</a
-                  >
+                  <div class="d-flex flex-column flex-md-row gap-2">
+                    <i class="fa-brands fa-square-github"></i>
+                    <a class="github" href="https://github.com/info-mic-info">
+                      info-mic-info</a
+                    >
+                  </div>
                 </li>
                 <li>
-                  <a class="github" href="https://github.com/info-mic-info"
-                    ><i class="fa-brands fa-square-github"></i> info-mic-info</a
-                  >
-                </li>
-                <li>
-                  <a class="github" href="https://github.com/francescodev1990"
-                    ><i class="fa-brands fa-square-github"></i>
-                    francescodev1990</a
-                  >
+                  <div class="d-flex flex-column flex-md-row gap-2">
+                    <i class="fa-brands fa-square-github"></i>
+                    <a
+                      class="github"
+                      href="https://github.com/francescodev1990"
+                    >
+                      francescodev1990</a
+                    >
+                  </div>
                 </li>
               </ul>
             </div>
@@ -80,7 +109,7 @@ export default {};
     }
     .github {
       &:hover {
-        color: blue;
+        color: rgba(0, 0, 255, 0.76);
       }
     }
   }

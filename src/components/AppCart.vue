@@ -29,7 +29,7 @@ export default {
     },
     myCheck() {
       location.reload();
-      window.location.href = "http://localhost:5173/braintree";
+      window.location.href = "http://localhost:5173/cart";
     },
     svuota() {
       localStorage.clear();

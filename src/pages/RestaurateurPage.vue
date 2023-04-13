@@ -51,7 +51,7 @@ export default {
 </script>
 
 <template lang="">
-  <AppCart class="z-3" />
+  <!-- <AppCart class="z-3" /> -->
   <AppJumbotron />
   <h1 class="py-5 text-center m-0">Ristoranti</h1>
   <div class="container" v-if="this.store.selectedType == null">

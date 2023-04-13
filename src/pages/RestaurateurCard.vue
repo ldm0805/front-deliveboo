@@ -15,10 +15,7 @@ export default {
 </script>
 <!-- Ciao sono un -->
 <template>
-  <div
-    class="card"
-    v-if="store.selectedType == null"
-  >
+  <div class="card" v-if="store.selectedType == null">
     <img
       class="card__image"
       :src="
@@ -32,7 +29,9 @@ export default {
       <div class="card-title">
         <h6>{{ restaurateur.name }}</h6>
       </div>
-      <p class="card-text"><strong>Indirizzo:</strong> {{ restaurateur.address }}</p>
+      <p class="card-text">
+        <strong>Indirizzo:</strong> {{ restaurateur.address }}
+      </p>
       <div>
         <div class="d-flex gap-2 flex-wrap align-items-center">
           <span><strong>Tag: </strong></span>
@@ -40,20 +39,19 @@ export default {
             v-for="(tag, index) in restaurateur.types"
             class="badge bg-info text-white text-uppercase"
             :key="index"
-          >{{ tag.name }}</span>
+            >{{ tag.name }}</span
+          >
         </div>
       </div>
       <router-link
         :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
         class="pb-orange"
-      >Vai ai piatti</router-link>
+        >Vai ai piatti</router-link
+      >
     </div>
   </div>
 
-  <div
-    class="card"
-    v-else-if="store.selectedType == ''"
-  >
+  <div class="card" v-else-if="store.selectedType == ''">
     <img
       class="card__image"
       :src="
@@ -75,20 +73,19 @@ export default {
             v-for="(tag, index) in restaurateur.types"
             class="badge bg-info text-white text-uppercase"
             :key="index"
-          >{{ tag.name }}</span>
+            >{{ tag.name }}</span
+          >
         </div>
       </div>
       <router-link
         :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
         class="pb-orange"
-      >Vai ai piatti</router-link>
+        >Vai ai piatti</router-link
+      >
     </div>
   </div>
 
-  <div
-    class="card"
-    v-else
-  >
+  <div class="card" v-else>
     <img
       class="card__image"
       :src="
@@ -110,13 +107,15 @@ export default {
             v-for="(tag, index) in restaurateur.types"
             class="badge bg-info text-white text-uppercase"
             :key="index"
-          >{{ tag }}</span>
+            >{{ tag }}</span
+          >
         </div>
       </div>
       <router-link
         :to="{ name: 'Plates', params: { slug: restaurateur.slug } }"
         class="pb-orange"
-      >Vai ai piatti</router-link>
+        >Vai ai piatti</router-link
+      >
     </div>
   </div>
 </template>

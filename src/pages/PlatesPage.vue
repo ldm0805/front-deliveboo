@@ -1,14 +1,11 @@
 <script>
 import axios from "axios";
 import { store } from "../store";
+const dataArray = "storage-key";
 import AppCart from "../components/AppCart.vue";
 
-const dataArray = "storage-key";
-
 export default {
-  components: {
-    AppCart,
-  },
+  components: { AppCart },
   data() {
     return {
       store,
@@ -80,8 +77,7 @@ export default {
 </script>
 
 <template lang="">
-  <AppCart class="z-3" />
-
+  <AppCart class="AppCart" />
   <div class="wrapper">
     <h1 class="text-center">Menù</h1>
     <h2 class="head-title">{{ restaurateur.name }}</h2>
@@ -115,12 +111,12 @@ export default {
 
             <p class="card__text">{{ plate.description }}</p>
 
-            <div v-show="!plate.availability">
+            <div v-if="!plate.availability">
               <span class="text-danger">Piatto non disponibile</span>
             </div>
             <div
               class="d-flex align-items-center justify-content-end"
-              v-show="plate.availability"
+              v-if="plate.availability"
             >
               <button class="btn" @click="decreaseQuantity(plate)">
                 <i class="fa-solid fa-minus"></i>
@@ -276,5 +272,8 @@ h2 {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
+}
+.AppCart {
+  z-index: 99;
 }
 </style>
