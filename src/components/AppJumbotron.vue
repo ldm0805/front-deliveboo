@@ -2,12 +2,12 @@
 	import axios from "axios";
 	import AppSearch from "./AppSearch.vue";
 	import { store } from "../store";
-	import AppSelect from "./AppSelect.vue";
+	// import AppSelect from "./AppSelect.vue";
 	export default {
 		name: "AppJumbotron",
 		components: {
 			AppSearch,
-			AppSelect,
+			// AppSelect,
 		},
 
 		data() {
@@ -21,7 +21,7 @@
 	<section class="jumbotron d-flex align-items-center justify-content-center my-text-light flex-column">
 	<div class="w-25 text-center animate__animated animate__fadeInDownBig">
 		<h1>Sì che hai fame</h1>
-		<AppSelect />
+		<!-- <AppSelect /> -->
 	</div>
 	</section>
 </template>

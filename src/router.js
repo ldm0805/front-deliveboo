@@ -10,12 +10,6 @@ import BraintreePage from './pages/BraintreePage.vue'
 import NotFound from './pages/NotFound.vue';
 import ThankYou from './pages/ThankYou.vue';
 
-
-
-
-
-
-
 // //3 creiamo l'oggetto router, nell'array di oggetti inseriamo i dati delle nostre rotte
 const router = createRouter({
     history: createWebHistory(),

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var button = document.querySelector('#submit-button');
 
     braintree.dropin.create({
-        authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+        authorization: 'sandbox_mfwpf8g9_8qjhpxdgnmhby72v',
         selector: '#dropin-container'
     }, function (err, instance) {
         button.addEventListener('click', function () {
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
 
 createApp(App).use(router).mount('#app')
 
