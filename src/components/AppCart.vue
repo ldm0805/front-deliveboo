@@ -109,7 +109,7 @@ export default {
 </script>
 <!-- ciao -->
 <template lang="">
-  <div class="position-absolute vh-100 w-100">
+  <div class="position-absolute ">
     <div class="position-fixed bottom-0 end-0 m-5 dropup">
       <a
         href="#"
